@@ -1,0 +1,27 @@
+/* ============================================
+   COMPRA - Estilos de la página de Compra de Entradas (TAP3)
+   ============================================ */
+
+/* Formulario de compra */
+.purchase-form {
+  /* Estilos del formulario */
+}
+
+/* Validación en tiempo real */
+.input-success {
+  border-color: var(--color-success);
+}
+
+.input-error {
+  border-color: var(--color-error);
+}
+
+.error-message {
+  color: var(--color-error);
+  font-size: 0.85rem;
+}
+
+.success-message {
+  color: var(--color-success);
+  font-size: 0.85rem;
+}
