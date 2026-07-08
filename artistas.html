@@ -6,43 +6,94 @@
   <meta name="description" content="Conoce a los artistas que se presentarán en Sonidos de la Ciudad.">
   <title>Artistas - Sonidos de la Ciudad</title>
 
-  <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 
-  <!-- Google Fonts: Fraunces & Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
 
-  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-  <!-- CSS Global -->
   <link rel="stylesheet" href="css/style.css">
 
-  <!-- CSS Componentes -->
   <link rel="stylesheet" href="css/navbar.css">
   <link rel="stylesheet" href="css/footer.css">
 
-  <!-- CSS Página -->
   <link rel="stylesheet" href="css/artistas.css">
 </head>
 <body>
-  <!-- Navbar inyectado por JS -->
   <div id="navbar-container"></div>
 
-  <main>
-    <h1>Artistas</h1>
-    <section>
-      <h2>Próximamente</h2>
-      <p>Contenido de la página de artistas.</p>
+<main class="container page-content">>
+    <section class="artists-section">
+      
+      <div class="artists-header text-center">
+        <h1>Line Up del Festival</h1>
+        <p class="body-lg">Conoce a los artistas que harán vibrar el corazón de la ciudad bajo las estrellas.</p>
+      </div>
+      
+      <div class="festival-genres">
+        <h3 class="label">Géneros musicales en escena:</h3>
+        <ul>
+          <li><i class="fas fa-guitar"></i> Rock Nacional</li>
+          <li><i class="fas fa-bolt"></i> Música Electrónica</li>
+          <li><i class="fas fa-sliders"></i> Jazz Local</li>
+        </ul>
+      </div>
+
+      <div class="artists-grid">
+
+        <article class="artist-card">
+          <div class="artist-image-container">
+            <img src="assets/img/artists/artista1.png" alt="Banda de rock tocando en vivo sobre un escenario iluminado con luces rojas.">
+          </div>
+          <div class="artist-body">
+            <h2>Los Redonditos de Ricota (Tributo)</h2>
+            <span class="badge-genre">Rock</span>
+            <p class="artist-bio body-md">Un recorrido emocionante por todos los clásicos del rock nacional que marcaron generaciones. Prepárate para vivir el pogo más grande del festival.</p>
+            <div class="artist-audio">
+              <p class="label label-sm">Escucha un adelanto:</p>
+              <audio src="assets/audio/jingle1.mp3" controls></audio>
+            </div>
+          </div>
+        </article>
+
+        <article class="artist-card">
+          <div class="artist-image-container">
+            <img src="assets/img/artists/artista2.png" alt="DJ mezclando música electrónica en una consola con pantallas LED de fondo.">
+          </div>
+          <div class="artist-body">
+            <h2>Varios DJs Nacionales</h2>
+            <span class="badge-genre">Electrónica</span>
+            <p class="artist-bio body-md">Los mejores exponentes de la escena actual se unen para ofrecer un set extendido de ritmos hipnóticos, ideal para bailar hasta el amanecer.</p>
+            <div class="artist-audio">
+              <p class="label label-sm">Escucha un adelanto:</p>
+              <audio src="assets/audio/jingle2.mp3" controls></audio>
+            </div>
+          </div>
+        </article>
+
+        <article class="artist-card">
+          <div class="artist-image-container">
+            <img src="assets/img/artists/artista3.png" alt="Músicos de jazz interpretando melodías con saxofón y contrabajo bajo luz tenue.">
+          </div>
+          <div class="artist-body">
+            <h2>Trío de Jazz Local</h2>
+            <span class="badge-genre">Jazz</span>
+            <p class="artist-bio body-md">La cuota de sofisticación, talento puro e improvisación perfecta. Melodías ideales para disfrutar durante las primeras horas de la noche.</p>
+            <div class="artist-audio">
+              <p class="label label-sm">Escucha un adelanto:</p>
+              <audio src="assets/audio/jingle3.mp3" controls></audio>
+            </div>
+          </div>
+        </article>
+
+      </div>
     </section>
   </main>
 
-  <!-- Footer inyectado por JS -->
   <div id="footer-container"></div>
 
-  <!-- Scripts -->
   <script src="js/components/navbar.js"></script>
   <script src="js/components/footer.js"></script>
   <script src="js/main.js"></script>
