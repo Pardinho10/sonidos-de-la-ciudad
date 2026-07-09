@@ -20,6 +20,21 @@
 .artists-header h1 {
     color: var(--color-primary);
     margin-bottom: var(--spacing-sm);
+    position: relative;
+    display: inline-block; /* Permite que el pseudoelemento se mida con base en el texto */
+    padding-bottom: var(--spacing-sm);
+}
+
+.artists-header h1::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%); /* Centra la línea perfectamente */
+    width: 60px;
+    height: 4px;
+    background-color: var(--color-terracotta);
+    border-radius: var(--border-radius);
 }
 
 .artists-header p {
