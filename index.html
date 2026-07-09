@@ -6,7 +6,7 @@
   <meta name="description" content="Sonidos de la Ciudad - Festival de música local. Descubre artistas, cronograma, entradas y más.">
   <meta name="keywords" content="festival, música, local, artistas, entradas, Sonidos de la Ciudad">
   <meta name="author" content="Sonidos de la Ciudad">
-  <title>Sonidos de la Ciudad - Festival de Música Local</title>
+  <title>Sonidos de la Ciudad - FESTIVAL SANTIAGUEÑO</title>
 
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="favicon.ico">
@@ -36,13 +36,150 @@
   <!-- Navbar inyectado por JS -->
   <div id="navbar-container"></div>
 
+  <!-- Hero Section (fuera de main para ocupar ancho completo) -->
+  <section class="hero">
+    <div class="hero-content">
+      <span class="hero-label">Festival Santiagueño</span>
+      <h1 class="hero-title">Sonidos de la Ciudad</h1>
+      <p class="hero-subtitle body-lg">Tres noches inolvidables bajo las estrellas con los mejores artistas locales. Rock, electrónica y jazz para todos!.</p>
+      <div class="hero-meta">
+        <span class="hero-date"><i class="fas fa-calendar-alt"></i>Julio  2026</span>
+        <span class="hero-location"><i class="fas fa-map-marker-alt"></i> Santiago del Estero</span>
+      </div>
+      <div class="hero-actions">
+        <a href="artistas.html" class="btn btn-primary">Ver Artistas</a>
+        <a href="entradas.html" class="btn btn-outline-light">Comprar Entradas</a>
+      </div>
+    </div>
+  </section>
+
   <main>
-    <h1>Sonidos de la Ciudad</h1>
-    <section>
-      <h2>Bienvenido al Festival</h2>
-      <p>Contenido de la página de inicio próximamente.</p>
-    </section>
-  </main>
+  <!-- About Section -->
+  <section class="about">
+    <div class="about-content">
+      <span class="about-label">Nuestro Festival</span>
+      <h2 class="about-title">Un festival con alma local</h2>
+      <p class="about-text body-lg">Sonidos de la Ciudad es más que un festival: es un viaje sonoro por la identidad musical de Santiago del Estero. Durante tres noches, tres escenarios únicos de la ciudad se transforman en templos del rock, la electrónica y el jazz, reuniendo talento local y tributos imperdibles bajo las estrellas.</p>
+      <div class="about-stats">
+        <div class="about-stat">
+          <span class="about-stat-number">3</span>
+          <span class="about-stat-label">Noches</span>
+        </div>
+        <div class="about-stat-divider"></div>
+        <div class="about-stat">
+          <span class="about-stat-number">3</span>
+          <span class="about-stat-label">Escenarios</span>
+        </div>
+        <div class="about-stat-divider"></div>
+        <div class="about-stat">
+          <span class="about-stat-number">1</span>
+          <span class="about-stat-label">Ciudad</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Events Bento Section -->
+  <section class="events">
+    <div class="events-header">
+      <span class="events-label">Los Escenarios</span>
+      <h2 class="events-title">Tres noches, tres mundos</h2>
+    </div>
+
+    <div class="events-bento">
+      <!-- Card grande: Rock -->
+      <article class="event-card event-card-large">
+        <div class="event-card-image">
+          <img src="assets/img/index/estadio-unico.webp" alt="Concierto de rock en el Estadio Madre de Ciudades">
+        </div>
+        <div class="event-card-content">
+          <span class="event-genre">Rock Nacional</span>
+          <h3 class="event-title">Concierto de Rock</h3>
+          <p class="event-place"><i class="fas fa-map-marker-alt"></i> Estadio Madre de Ciudades</p>
+          <p class="event-description">Un escenario al aire libre para vivir el pogo más grande del festival con los clásicos del rock nacional.</p>
+        </div>
+      </article>
+
+      <!-- Card: Electrónica -->
+      <article class="event-card">
+        <div class="event-card-image">
+          <img src="assets/img/index/complejo-urbano.webp" alt="Festival de música electrónica en el Complejo Urbano">
+        </div>
+        <div class="event-card-content">
+          <span class="event-genre">Electrónica</span>
+          <h3 class="event-title">Festival de Música Electrónica</h3>
+          <p class="event-place"><i class="fas fa-map-marker-alt"></i> Complejo Urbano</p>
+          <p class="event-description">Espacio inmersivo con pantallas LED y sonido envolvente para bailar hasta el amanecer.</p>
+        </div>
+      </article>
+
+      <!-- Card: Jazz -->
+      <article class="event-card">
+        <div class="event-card-image">
+          <img src="assets/img/index/bar.webp" alt="Noche de jazz en el Bar Cultural La Ferretería">
+        </div>
+        <div class="event-card-content">
+          <span class="event-genre">Jazz Local</span>
+          <h3 class="event-title">Noche de Jazz</h3>
+          <p class="event-place"><i class="fas fa-map-marker-alt"></i> Bar Cultural La Ferretería</p>
+          <p class="event-description">Ambiente íntimo y sofisticado para disfrutar de melodías e improvisación en vivo.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Info Section (Cronograma + Entradas + Ubicación) -->
+  <section class="info">
+    <div class="info-grid">
+      <div class="info-block">
+        <i class="fas fa-calendar-days info-icon"></i>
+        <h3 class="info-title">Cronograma</h3>
+        <p class="info-text">Tres noches de música en vivo. Consultá los horarios de cada escenario y no te pierdas a tus artistas favoritos.</p>
+        <a href="cronograma.html" class="info-link">Ver cronograma <i class="fas fa-arrow-right"></i></a>
+      </div>
+
+      <div class="info-block">
+        <i class="fas fa-ticket info-icon"></i>
+        <h3 class="info-title">Entradas</h3>
+        <p class="info-text">General, VIP y Palco. Comprá online y asegurá tu lugar en cualquiera de los tres escenarios del festival.</p>
+        <a href="entradas.html" class="info-link">Comprar entradas <i class="fas fa-arrow-right"></i></a>
+      </div>
+
+      <div class="info-block">
+        <i class="fas fa-map-location-dot info-icon"></i>
+        <h3 class="info-title">Ubicación</h3>
+        <p class="info-text">Tres escenarios distribuidos en Santiago del Estero. Encontrá cómo llegar a cada uno con el mapa interactivo.</p>
+        <a href="ubicacion.html" class="info-link">Ver ubicación <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+  <!-- Experience Section (Vivi la experiencia) -->
+  <section class="experience">
+    <div class="experience-content">
+      <div class="experience-cards">
+        <div class="experience-card">
+          <i class="fas fa-utensils experience-icon"></i>
+          <span class="experience-label">Gastronomía</span>
+        </div>
+        <div class="experience-card">
+          <i class="fas fa-beer-mug-empty experience-icon"></i>
+          <span class="experience-label">Cerveza Artesanal</span>
+        </div>
+        <div class="experience-card">
+          <i class="fas fa-martini-glass-citrus experience-icon"></i>
+          <span class="experience-label">Tragos</span>
+        </div>
+        <div class="experience-card">
+          <i class="fas fa-palette experience-icon"></i>
+          <span class="experience-label">Arte</span>
+        </div>
+      </div>
+      <h2 class="experience-title">Vivi la experiencia</h2>
+      <p class="experience-text body-lg">Todo está pensado para que vivas la música en vivo de la mejor manera.</p>
+    </div>
+  </section>
 
   <!-- Footer inyectado por JS -->
   <div id="footer-container"></div>

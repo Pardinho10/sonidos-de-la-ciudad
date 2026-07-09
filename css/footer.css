@@ -7,10 +7,10 @@ footer {
   background-color: var(--color-charcoal);
   color: var(--color-sand);
   width: 100%;
-  padding: 5rem 4rem;
+  padding: var(--spacing-xxl) var(--spacing-xxl);
   display: flex;
   flex-direction: column;
-  gap: 3rem;
+  gap: var(--spacing-xxl);
 }
 
 .footer-content {
