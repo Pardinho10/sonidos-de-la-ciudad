@@ -19,10 +19,11 @@
 /* --- Encabezado --- */
 .artists-header h1 {
     color: var(--color-primary);
-    margin-bottom: var(--spacing-sm);
+    font-size: clamp(2rem, 5vw, 3rem); /* <- ¡Acá está el truco del 10! Fluido según la pantalla */
     position: relative;
-    display: inline-block; /* Permite que el pseudoelemento se mida con base en el texto */
+    display: inline-block; 
     padding-bottom: var(--spacing-sm);
+    margin-bottom: var(--spacing-sm);
 }
 
 .artists-header h1::after {
@@ -30,7 +31,7 @@
     position: absolute;
     bottom: 0;
     left: 50%;
-    transform: translateX(-50%); /* Centra la línea perfectamente */
+    transform: translateX(-50%); 
     width: 60px;
     height: 4px;
     background-color: var(--color-terracotta);
@@ -39,6 +40,7 @@
 
 .artists-header p {
     color: var(--color-text-muted);
+    font-size: clamp(0.95rem, 2.8vw, 1.1rem); /* Reajusta sutilmente el párrafo también */
     max-width: 600px;
     margin: 0 auto;
 }
@@ -103,7 +105,7 @@
 /* Contenedor de Imagen */
 .artist-image-container {
     width: 100%;
-    height: 250px;
+    aspect-ratio: 16 / 10; /* Mantiene la proporción perfecta en cualquier pantalla */
     overflow: hidden;
     background-color: var(--color-surface-container);
 }
@@ -112,6 +114,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block; /* Elimina espacios residuales inferiores */
     transition: transform 0.5s ease;
 }
 
@@ -170,4 +173,53 @@
 .artist-audio audio {
     width: 100%;
     height: 40px;
+}
+
+@media (max-width: 768px) {
+    /* 1. Forzamos la grilla a tener SÍ O SÍ 2 columnas exactas */
+    .artists-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: var(--spacing-sm) !important; /* Espacio bien chiquito tipo Pinterest */
+        margin-top: var(--spacing-sm);
+    }
+
+    /* 2. Achicamos la tarjeta y sus márgenes internos para que entre todo */
+    .artist-body {
+        padding: var(--spacing-sm) !important; /* Menos espacio interno */
+        gap: var(--spacing-xs) !important;
+    }
+
+    /* 3. Reducción drástica de textos para que no se desborden en las 2 columnas */
+    .artists-header h1 {
+        font-size: 1.6rem !important;
+    }
+
+    .artist-body h2 {
+        font-size: 0.95rem !important; /* Texto chico para que entre el nombre del artista */
+        line-height: 1.2;
+    }
+
+    .badge-genre {
+        font-size: 0.6rem !important;
+        padding: 2px 4px !important;
+    }
+
+    .artist-bio {
+        font-size: 0.75rem !important; /* Bio compacta */
+        line-height: 1.3;
+        margin-bottom: var(--spacing-sm) !important;
+    }
+    
+    /* 4. Compactamos el reproductor de audio */
+    .artist-audio {
+        padding-top: var(--spacing-xs) !important;
+    }
+
+    .artist-audio .label {
+        font-size: 0.65rem !important;
+    }
+
+    .artist-audio audio {
+        height: 30px !important; /* Más petiso para que no ocupe toda la tarjeta */
+    }
 }

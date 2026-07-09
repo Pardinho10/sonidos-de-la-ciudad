@@ -3,8 +3,11 @@
    Paleta: Desert Groove (Orgánica y Alternativa)
    ============================================ */
 
-/* --- Variables de color (paleta Desert Groove) --- */
 :root {
+  /* --- Tipografía Unificada (Jorge's Pautas) --- */
+  --font-heading: 'Montserrat', sans-serif;
+  --font-body: 'Open Sans', sans-serif;
+
   /* Colores principales */
   --color-terracotta: #E2725B;
   --color-sage: #8A9A5B;
@@ -27,10 +30,6 @@
   --color-white: #FFFFFF;
   --color-text-dark: #221b0b;
   --color-text-muted: rgba(34, 27, 11, 0.6);
-
-  /* Tipografía */
-  --font-heading: 'Fraunces', serif;
-  --font-body: 'Plus Jakarta Sans', sans-serif;
 
   /* Espaciado base */
   --spacing-xs: 0.25rem;
@@ -72,7 +71,7 @@ body {
   overflow-x: hidden;
 }
 
-/* --- Encabezados --- */
+/* --- Encabezados Globales Responsivos Fluidos --- */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
   font-weight: 600;
@@ -82,18 +81,18 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: 3.5rem;
+  font-size: clamp(2.2rem, 6vw, 3.5rem); /* Se encoge en celulares, crece en PC */
   font-weight: 700;
   letter-spacing: -0.02em;
 }
 
 h2 {
-  font-size: 2.5rem;
+  font-size: clamp(1.75rem, 5vw, 2.5rem); /* Totalmente fluido */
   font-weight: 600;
 }
 
 h3 {
-  font-size: 1.5rem;
+  font-size: clamp(1.25rem, 4vw, 1.5rem);
   font-weight: 600;
 }
 
@@ -114,7 +113,7 @@ img {
   display: block;
 }
 
-/* --- Contenedor principal --- */
+/* --- Estructura de Contenedores Generales --- */
 main {
   flex: 1;
   padding: var(--spacing-xl) var(--spacing-md);
@@ -123,7 +122,6 @@ main {
   width: 100%;
 }
 
-/* --- Contenedor general --- */
 .container {
   max-width: 1280px;
   margin: 0 auto;
@@ -164,7 +162,7 @@ main {
   border-radius: var(--border-radius-full);
   font-family: var(--font-body);
   font-weight: 600;
-  font-size: 0.875rem;
+  font-size: clamp(0.8rem, 2vw, 0.875rem); /* Botones responsivos */
   letter-spacing: 0.05em;
   text-transform: uppercase;
   cursor: pointer;
@@ -204,13 +202,13 @@ main {
   font-weight: 500;
 }
 
-/* --- Cuerpo de texto --- */
+/* --- Cuerpo de texto adaptativo --- */
 .body-lg {
-  font-size: 1.125rem;
+  font-size: clamp(1rem, 2.8vw, 1.125rem);
   line-height: 1.75;
 }
 
 .body-md {
-  font-size: 1rem;
+  font-size: clamp(0.9rem, 2.5vw, 1rem);
   line-height: 1.5;
 }
