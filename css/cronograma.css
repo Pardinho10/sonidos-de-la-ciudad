@@ -1,8 +1,237 @@
 /* ============================================
-   CRONOGRAMA - Estilos de la página de Cronograma
+   CRONOGRAMA - Estilos de página
    ============================================ */
 
-/* Tabla de horarios */
-.schedule-table {
-  /* Estilos de la tabla */
+.page-content {
+  padding-top: 140px;
+  margin-bottom: var(--spacing-xl);
+}
+
+#top {
+  scroll-margin-top: 6rem;
+}
+
+/* --- Encabezado --- */
+.cronograma-header h1 {
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-sm);
+  animation: latido 2s ease-in-out infinite;
+}
+
+@keyframes latido {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+}
+
+.cronograma-header p {
+  color: var(--color-text-muted);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Selector de tipo + clase */
+section#horarios-por-dia,
+section#resumen-escenarios {
+  margin-bottom: var(--spacing-xxl);
+  padding: var(--spacing-lg);
+  border: 1px solid var(--color-outline-variant);
+  border-radius: var(--border-radius-lg);
+  background-color: var(--color-surface);
+  box-shadow: 0 8px 20px rgba(226, 114, 91, 0.15);
+}
+
+h2 i {
+  color: var(--color-terracotta);
+  margin-right: 0.5rem;
+}
+
+/* --- Lista ordenada de horarios --- */
+.lista-horarios {
+  list-style: none;
+  padding-left: 0;
+  counter-reset: horario;
+}
+
+.lista-horarios li {
+  position: relative;
+  padding: var(--spacing-md) var(--spacing-md) var(--spacing-md) 3rem;
+  margin-bottom: var(--spacing-sm);
+  background-color: var(--color-surface-container);
+  border-radius: 0.5rem;
+  border-left: 4px solid var(--color-terracotta);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: deslizarEntrada 0.5s ease backwards;
+}
+
+.lista-horarios li:nth-child(1) { animation-delay: 0.1s; }
+.lista-horarios li:nth-child(2) { animation-delay: 0.2s; }
+.lista-horarios li:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes deslizarEntrada {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* Pseudoelemento: numeración custom */
+.lista-horarios li::before {
+  counter-increment: horario;
+  content: counter(horario);
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1.75rem;
+  height: 1.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-terracotta);
+  color: var(--color-on-primary);
+  border-radius: 50%;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+/* Pseudoclase: hover con transformación */
+.lista-horarios li:hover {
+  transform: translateX(0.5rem) scale(1.02);
+  box-shadow: 0 4px 12px rgba(226, 114, 91, 0.2);
+}
+
+.dia {
+  display: block;
+  font-weight: 600;
+  color: var(--color-ochre);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin-bottom: 0.15rem;
+}
+
+/* --- Tabla --- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: var(--spacing-md);
+  font-size: 0.95rem;
+}
+
+caption {
+  text-align: left;
+  font-weight: 600;
+  margin-bottom: var(--spacing-sm);
+  color: var(--color-text-muted);
+}
+
+thead tr {
+  background-color: var(--color-terracotta);
+}
+
+thead th {
+  color: var(--color-on-primary);
+  text-align: left;
+  padding: var(--spacing-sm) var(--spacing-md);
+}
+
+tbody td {
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-bottom: 1px solid var(--color-outline-variant);
+  transition: background-color 0.25s ease;
+}
+
+tbody tr:nth-child(even) {
+  background-color: var(--color-surface-container);
+}
+
+tbody tr:hover td {
+  background-color: var(--color-sand);
+}
+
+/* --- Badges de género --- */
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--border-radius-full);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-on-primary);
+  transition: transform 0.2s ease;
+}
+
+.badge:hover {
+  transform: scale(1.1);
+}
+
+.badge-rock { background-color: var(--color-terracotta); }
+.badge-electronica { background-color: var(--color-ochre); }
+.badge-jazz { background-color: var(--color-sage); }
+
+.nota-escenarios {
+  margin-top: var(--spacing-md);
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+
+/* --- Botón volver arriba --- */
+.volver-arriba {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: var(--spacing-lg);
+  font-weight: 600;
+  transition: transform 0.3s ease, color 0.2s ease;
+}
+
+.volver-arriba:hover {
+  transform: translateY(-3px);
+  color: var(--color-primary);
+}
+
+/* --- Responsive: 3 puntos de control --- */
+
+/* Tablet */
+@media (max-width: 992px) {
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+
+  thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  tbody tr {
+    margin-bottom: var(--spacing-md);
+    border: 1px solid var(--color-outline-variant);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-sm);
+  }
+
+  tbody td {
+    border: none;
+    padding-left: 45%;
+    position: relative;
+  }
+
+  tbody td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: var(--spacing-sm);
+    font-weight: 600;
+    color: var(--color-ochre);
+  }
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+  .lista-horarios li {
+    padding-left: 2.75rem;
+    font-size: 0.9rem;
+  }
+
+  section#horarios-por-dia,
+  section#resumen-escenarios {
+    padding: var(--spacing-md);
+  }
 }
