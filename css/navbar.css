@@ -30,6 +30,7 @@ header .logo a {
   font-weight: 600;
   color: var(--color-terracotta);
   letter-spacing: -0.02em;
+  margin-right: 2.5rem;
 }
 
 header .logo a:hover {
@@ -37,10 +38,11 @@ header .logo a:hover {
 }
 
 nav {
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
+  gap: 2rem;
 }
 
 .nav-links {
@@ -89,12 +91,11 @@ nav {
   font-weight: 600;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  cursor: pointer;
-  border: none;
 }
 
 .nav-cta:hover {
   background-color: var(--color-primary);
+  color: var(--color-on-primary);
 }
 
 /* --- Menú hamburguesa (móvil) --- */
@@ -169,3 +170,4 @@ nav {
     margin-top: 1rem;
   }
 }
+
