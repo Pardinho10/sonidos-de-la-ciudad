@@ -81,8 +81,8 @@
 .artists-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: var(--spacing-xl);
-    margin-top: var(--spacing-md);
+    column-gap: var(--spacing-xl); /* Mantiene el espacio entre columnas */
+    row-gap: calc(var(--spacing-xl) + 1.5rem) !important; /* Le sumamos un extra para que baje el 3er artista */
 }
 
 /* --- Tarjeta de Artista --- */
@@ -95,6 +95,7 @@
     display: flex;
     flex-direction: column;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-top: 3.5rem !important;
 }
 
 .artist-card:hover {
@@ -107,7 +108,8 @@
     width: 100%;
     aspect-ratio: 16 / 10; /* Mantiene la proporción perfecta en cualquier pantalla */
     overflow: hidden;
-    background-color: var(--color-surface-container);
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+    margin-top: var(--spacing-md);
 }
 
 .artist-image-container img {
@@ -222,4 +224,47 @@
     .artist-audio audio {
         height: 30px !important; /* Más petiso para que no ocupe toda la tarjeta */
     }
+}
+
+/* Contenedor base inactivo */
+.tarjeta-logo-anim {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 90px;
+    height: 44px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    border-radius: var(--border-radius);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Animación con rebote */
+    opacity: 0;
+    transform: scale(0.8);
+}
+
+/* Clases activas: cuando el JS detecte el patrón, se hacen visibles con estilo */
+.tarjeta-logo-anim.visa {
+    opacity: 1;
+    transform: scale(1);
+    background-color: #1a1f71;
+    color: #ffffff;
+    border: 1px solid #1a1f71;
+    box-shadow: 0 2px 8px rgba(26, 31, 113, 0.3);
+}
+
+.tarjeta-logo-anim.mastercard {
+    opacity: 1;
+    transform: scale(1);
+    background-color: #222222;
+    color: #ff5f00;
+    border: 1px solid #ff5f00;
+    box-shadow: 0 2px 8px rgba(255, 95, 0, 0.3);
+}
+
+.tarjeta-logo-anim.amex {
+    opacity: 1;
+    transform: scale(1);
+    background-color: #007bc1;
+    color: #ffffff;
+    border: 1px solid #007bc1;
+    box-shadow: 0 2px 8px rgba(0, 123, 193, 0.3);
 }

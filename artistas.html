@@ -25,7 +25,7 @@
   <div class="grain-overlay"></div>
   <div id="navbar-container"></div>
 
-<main class="container page-content">>
+<main class="container page-content">
     <section class="artists-section">
       
       <div class="artists-header text-center">
@@ -44,7 +44,7 @@
 
       <div class="artists-grid">
 
-        <article class="artist-card">
+        <article class="artista-card">
           <div class="artist-image-container">
             <img src="assets/img/artists/artista1.png" alt="Banda de rock tocando en vivo sobre un escenario iluminado con luces rojas.">
           </div>
@@ -59,7 +59,7 @@
           </div>
         </article>
 
-        <article class="artist-card">
+        <article class="artista-card">
           <div class="artist-image-container">
             <img src="assets/img/artists/artista2.png" alt="DJ mezclando música electrónica en una consola con pantallas LED de fondo.">
           </div>
@@ -74,7 +74,7 @@
           </div>
         </article>
 
-        <article class="artist-card">
+        <article class="artista-card">
           <div class="artist-image-container">
             <img src="assets/img/artists/artista3.png" alt="Músicos de jazz interpretando melodías con saxofón y contrabajo bajo luz tenue.">
           </div>
@@ -89,9 +89,61 @@
           </div>
         </article>
 
-      </div>
+      </div></section><section class="booking-section" style="margin-top: 4rem; padding: 2rem; background-color: var(--color-surface); border-radius: var(--border-radius); border: 1px solid var(--color-outline-variant);">
+      <h2 style="margin-bottom: 1.5rem;">Reservá tus entradas para el Festival</h2>
+      
+      <form id="form-reserva">
+        <div class="form-group" style="margin-bottom: 1.5rem;">
+          <label for="evento-select" class="label" style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Elegí el evento:</label>
+          <select id="evento-select" class="form-control" style="width: 100%; max-width: 400px; padding: 0.75rem; border-radius: var(--border-radius); border: 1px solid var(--color-outline);">
+            <option value="">-- Seleccioná un evento --</option>
+          </select>
+        </div>
+
+        <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem; max-width: 600px;">
+          <div style="flex: 1;">
+            <label for="evento-fecha" class="label" style="display: block; margin-bottom: 0.5rem;">Fecha:</label>
+            <input type="text" id="evento-fecha" readonly placeholder="Se autocompletará" style="width: 100%; padding: 0.75rem; border-radius: var(--border-radius); border: 1px solid var(--color-outline-variant); background-color: rgba(0,0,0,0.05); cursor: not-allowed;">
+          </div>
+          <div style="flex: 1;">
+            <label for="evento-lugar" class="label" style="display: block; margin-bottom: 0.5rem;">Lugar:</label>
+            <input type="text" id="evento-lugar" readonly placeholder="Se autocompletará" style="width: 100%; padding: 0.75rem; border-radius: var(--border-radius); border: 1px solid var(--color-outline-variant); background-color: rgba(0,0,0,0.05); cursor: not-allowed;">
+          </div>
+        </div>
+
+        <hr style="border: 0; border-top: 1px solid var(--color-outline-variant); margin: 2rem 0;">
+        <h3 style="margin-bottom: 1.2rem;">Detalles del Pago</h3>
+
+        <div class="form-group" style="margin-bottom: 1.5rem; max-width: 600px;">
+          <label for="tarjeta-titular" class="label" style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Nombre del Titular:</label>
+          <input type="text" id="tarjeta-titular" placeholder="COMO FIGURA EN LA TARJETA" style="width: 100%; padding: 0.75rem; border-radius: var(--border-radius); border: 1px solid var(--color-outline);">
+        </div>
+
+        <div class="form-group" style="margin-bottom: 1.5rem; max-width: 600px;">
+          <label for="tarjeta-numero" class="label" style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Número de Tarjeta:</label>
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <input type="text" id="tarjeta-numero" placeholder="4xxx xxxx xxxx xxxx" maxlength="19" style="flex: 1; padding: 0.75rem; border-radius: var(--border-radius); border: 1px solid var(--color-outline);">
+            
+            <div id="tarjeta-logo" class="tarjeta-logo-anim"></div>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 1rem; margin-bottom: 2rem; max-width: 300px;">
+          <div style="flex: 1;">
+            <label for="tarjeta-vence" class="label" style="display: block; margin-bottom: 0.5rem;">Vencimiento:</label>
+            <input type="text" id="tarjeta-vence" placeholder="MM/AA" maxlength="5" style="width: 100%; padding: 0.75rem; border-radius: var(--border-radius); border: 1px solid var(--color-outline);">
+          </div>
+          <div style="flex: 1;">
+            <label for="tarjeta-cvv" class="label" style="display: block; margin-bottom: 0.5rem;">CVV:</label>
+            <input type="password" id="tarjeta-cvv" placeholder="000" maxlength="4" style="width: 100%; padding: 0.75rem; border-radius: var(--border-radius); border: 1px solid var(--color-outline);">
+          </div>
+        </div>
+
+        <button type="submit" class="btn-artista" style="padding: 0.75rem 2rem; font-weight: bold;">Confirmar Reserva</button>
+      </form>
     </section>
-  </main>
+
+  </main> ```
 
   <div id="footer-container"></div>
 
