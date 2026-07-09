@@ -3,54 +3,84 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Ubicación y cómo llegar al festival Sonidos de la Ciudad.">
+  <meta name="description" content="Cómo llegar al festival Sonidos de la Ciudad. Ubicación, mapa y medios de transporte.">
+  <meta name="keywords" content="festival, música, ubicación, mapa, cómo llegar, Sonidos de la Ciudad">
+  <meta name="author" content="Sonidos de la Ciudad">
   <title>Ubicación - Sonidos de la Ciudad</title>
 
-  <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
 
-  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-  <!-- CSS Global -->
   <link rel="stylesheet" href="css/style.css">
-
-  <!-- CSS Componentes -->
   <link rel="stylesheet" href="css/navbar.css">
   <link rel="stylesheet" href="css/footer.css">
-
-  <!-- CSS Página -->
   <link rel="stylesheet" href="css/ubicacion.css">
 </head>
 <body>
-  <!-- Efecto de grano (textura sutil) -->
   <div class="grain-overlay"></div>
 
-  <!-- Navbar inyectado por JS -->
   <div id="navbar-container"></div>
 
-  <main>
-    <h1>Ubicación</h1>
-    <section>
-      <h2>Cómo Llegar</h2>
-      <div class="map-container">
-        <!-- Iframe de Google Maps aquí -->
+  <main class="container page-content">
+    <section class="ubicacion-section">
+
+      <div class="ubicacion-header text-center">
+        <h1>
+          <i class="fa-solid fa-earth-americas" aria-hidden="true"></i>
+          Cómo Llegar
+        </h1>
+        <p class="body-lg">
+          Encontrá el camino hacia "Sonidos de la Ciudad" y sumate a la fiesta.
+        </p>
       </div>
+
+      <section id="datos-acceso">
+        <h2><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Datos del Predio</h2>
+        <p class="body-md">
+          El festival "Sonidos de la Ciudad" 2026 se realiza en el <strong>Estadio Madre de Ciudades</strong>,
+          Santiago del Estero, un predio con tres escenarios: Principal, Urbano y Bar Cultural.
+        </p>
+        <p class="body-md">Dirección: Av. Costanera s/n, Santiago del Estero, Argentina.</p>
+        <p class="body-md">Las puertas abren dos horas antes del inicio de cada jornada.</p>
+      </section>
+
+      <section id="como-llegar">
+        <h2><i class="fa-solid fa-route" aria-hidden="true"></i> Medios de Transporte</h2>
+        <ul class="lista-transporte">
+          <li><i class="fa-solid fa-bus" aria-hidden="true"></i> Colectivo: líneas urbanas con parada frente al predio.</li>
+          <li><i class="fa-solid fa-car" aria-hidden="true"></i> Auto particular: estacionamiento habilitado sobre Av. Costanera.</li>
+          <li><i class="fa-solid fa-person-walking" aria-hidden="true"></i> A pie: acceso peatonal desde el centro, aprox. 20 minutos.</li>
+        </ul>
+      </section>
+
+      <section id="mapa">
+        <h2><i class="fa-solid fa-map" aria-hidden="true"></i> Mapa del Predio</h2>
+        <p class="body-md">Ubicá el festival directamente en el mapa interactivo:</p>
+
+        <div class="mapa-container">
+          <iframe
+            title="Mapa de ubicación del festival Sonidos de la Ciudad"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3530.4224850262312!2d-64.27354898908287!3d-27.76595357604961!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x943b538809306767%3A0x6a147f14e2f77597!2sEstadio%20%C3%9Anico%20Madre%20de%20Ciudades.!5e0!3m2!1ses!2sar!4v1783567273731!5m2!1ses!2sar" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin">
+          </iframe>
+        </div>
+
+        <a href="https://www.google.com/maps/search/?api=1&query=Estadio+Madre+de+Ciudades+Santiago+del+Estero"
+          target="_blank" rel="noopener noreferrer" class="btn btn-primary enlace-mapa-completo">
+          <i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i> Abrir mapa completo en Google Maps
+        </a>
+      </section>
+
     </section>
   </main>
-
-  <!-- Footer inyectado por JS -->
   <div id="footer-container"></div>
 
-  <!-- Scripts -->
   <script src="js/components/navbar.js"></script>
   <script src="js/components/footer.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>
-tml>
