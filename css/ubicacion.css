@@ -1,8 +1,150 @@
 /* ============================================
-   UBICACION - Estilos de la página de Ubicación
+   UBICACIÓN - Estilos de página
    ============================================ */
 
-/* Mapa */
-.map-container {
-  /* Estilos del contenedor del iframe */
+.page-content {
+  padding-top: 140px;
+  margin-bottom: var(--spacing-xl);
+}
+
+/* --- Encabezado (mismo criterio que Cronograma y Artistas) --- */
+
+.ubicacion-header h1 {
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.ubicacion-header h1 i {
+  color: var(--color-ochre);
+  font-size: 0.8em;
+  animation: girar 4s linear infinite;
+}
+
+@keyframes girar {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* --- Secciones --- */
+#datos-acceso,
+#como-llegar,
+#mapa {
+  margin-bottom: var(--spacing-xxl);
+  padding: var(--spacing-lg);
+  border: 1px solid var(--color-outline-variant);
+  border-radius: var(--border-radius-lg);
+  background-color: var(--color-surface);
+  box-shadow: 0 8px 20px rgba(226, 114, 91, 0.15);
+}
+
+h2 i {
+  color: var(--color-terracotta);
+  margin-right: 0.5rem;
+}
+
+#datos-acceso p {
+  max-width: 65ch;
+  margin-bottom: var(--spacing-sm);
+}
+
+/* --- Lista de transporte --- */
+.lista-transporte {
+  list-style: none;
+  padding-left: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-md);
+}
+
+.lista-transporte li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.5rem;
+  padding: var(--spacing-lg) var(--spacing-md);
+  background-color: var(--color-surface-container);
+  border-radius: 0.5rem;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.lista-transporte li:nth-child(odd) { transform: rotate(-1deg); }
+.lista-transporte li:nth-child(even) { transform: rotate(1deg); }
+
+.lista-transporte li:hover {
+  transform: translateY(-6px) rotate(0deg) scale(1.05);
+  background-color: var(--color-sand);
+}
+
+.lista-transporte i {
+  font-size: 1.75rem;
+}
+
+.lista-transporte li:nth-child(1) i { color: var(--color-terracotta); }
+.lista-transporte li:nth-child(2) i { color: var(--color-ochre); }
+.lista-transporte li:nth-child(3) i { color: var(--color-sage); }
+
+/* --- Mapa --- */
+.mapa-container {
+  width: 100%;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  border: 2px solid var(--color-outline-variant);
+  transition: border-color 0.3s ease;
+}
+
+.mapa-container:hover {
+  border-color: var(--color-terracotta);
+}
+
+.mapa-container iframe {
+  width: 100%;
+  height: 50vh;
+  min-height: 300px;
+  display: block;
+}
+
+/* --- Enlace externo al mapa completo --- */
+.enlace-mapa-completo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: var(--spacing-md);
+  transition: transform 0.3s ease, background-color 0.3s ease, color 0.2s ease;
+}
+
+.enlace-mapa-completo:hover {
+  color: var(--color-on-primary);
+  transform: scale(1.05);
+}
+
+/* --- Responsive: 3 puntos de control --- */
+
+/* Tablet */
+@media (max-width: 992px) {
+  .lista-transporte {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+  .lista-transporte {
+    grid-template-columns: 1fr;
+  }
+
+  #datos-acceso,
+  #como-llegar,
+  #mapa {
+    padding: var(--spacing-md);
+  }
+
+  .mapa-container iframe {
+    height: 40vh;
+  }
 }
