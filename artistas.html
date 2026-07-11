@@ -88,63 +88,33 @@
             </div>
           </div>
         </article>
+      </div> <!-- Cierre correcto de artists-grid -->
+    </section> <!-- Cierre correcto de artists-section -->
 
-      </div></section><section class="booking-section" style="margin-top: 4rem; padding: 2rem; background-color: var(--color-surface); border-radius: var(--border-radius); border: 1px solid var(--color-outline-variant);">
-      <h2 style="margin-bottom: 1.5rem;">Reservá tus entradas para el Festival</h2>
+    <!-- SECCIÓN DEL BOTÓN DE COMPRA: Estilizada, más ancha que larga y 100% centrada -->
+    <section class="booking-section" style="max-width: 650px; margin: 4rem auto 0 auto; padding: 1.5rem 2rem; background-color: var(--color-surface, #fffdfa); border-radius: 12px; border: 1px solid var(--color-outline-variant, #ddd); text-align: center; box-sizing: border-box;">
+      <h2 style="margin-top: 0; margin-bottom: 0.5rem; font-family: 'Fraunces', serif; font-size: 1.6rem;">¡Reservá tus entradas para el Festival!</h2>
+      <p style="margin-top: 0; margin-bottom: 1.5rem; color: #555; font-size: 0.95rem;">Asegurá tu lugar de forma rápida y segura en nuestra nueva plataforma.</p>
       
-      <form id="form-reserva">
-        <div class="form-group" style="margin-bottom: 1.5rem;">
-          <label for="evento-select" class="label" style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Elegí el evento:</label>
-          <select id="evento-select" class="form-control" style="width: 100%; max-width: 400px; padding: 0.75rem; border-radius: var(--border-radius); border: 1px solid var(--color-outline);">
-            <option value="">-- Seleccioná un evento --</option>
-          </select>
-        </div>
-
-        <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem; max-width: 600px;">
-          <div style="flex: 1;">
-            <label for="evento-fecha" class="label" style="display: block; margin-bottom: 0.5rem;">Fecha:</label>
-            <input type="text" id="evento-fecha" readonly placeholder="Se autocompletará" style="width: 100%; padding: 0.75rem; border-radius: var(--border-radius); border: 1px solid var(--color-outline-variant); background-color: rgba(0,0,0,0.05); cursor: not-allowed;">
-          </div>
-          <div style="flex: 1;">
-            <label for="evento-lugar" class="label" style="display: block; margin-bottom: 0.5rem;">Lugar:</label>
-            <input type="text" id="evento-lugar" readonly placeholder="Se autocompletará" style="width: 100%; padding: 0.75rem; border-radius: var(--border-radius); border: 1px solid var(--color-outline-variant); background-color: rgba(0,0,0,0.05); cursor: not-allowed;">
-          </div>
-        </div>
-
-        <hr style="border: 0; border-top: 1px solid var(--color-outline-variant); margin: 2rem 0;">
-        <h3 style="margin-bottom: 1.2rem;">Detalles del Pago</h3>
-
-        <div class="form-group" style="margin-bottom: 1.5rem; max-width: 600px;">
-          <label for="tarjeta-titular" class="label" style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Nombre del Titular:</label>
-          <input type="text" id="tarjeta-titular" placeholder="COMO FIGURA EN LA TARJETA" style="width: 100%; padding: 0.75rem; border-radius: var(--border-radius); border: 1px solid var(--color-outline);">
-        </div>
-
-        <div class="form-group" style="margin-bottom: 1.5rem; max-width: 600px;">
-          <label for="tarjeta-numero" class="label" style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Número de Tarjeta:</label>
-          <div style="display: flex; align-items: center; gap: 10px;">
-            <input type="text" id="tarjeta-numero" placeholder="4xxx xxxx xxxx xxxx" maxlength="19" style="flex: 1; padding: 0.75rem; border-radius: var(--border-radius); border: 1px solid var(--color-outline);">
-            
-            <div id="tarjeta-logo" class="tarjeta-logo-anim"></div>
-          </div>
-        </div>
-
-        <div style="display: flex; gap: 1rem; margin-bottom: 2rem; max-width: 300px;">
-          <div style="flex: 1;">
-            <label for="tarjeta-vence" class="label" style="display: block; margin-bottom: 0.5rem;">Vencimiento:</label>
-            <input type="text" id="tarjeta-vence" placeholder="MM/AA" maxlength="5" style="width: 100%; padding: 0.75rem; border-radius: var(--border-radius); border: 1px solid var(--color-outline);">
-          </div>
-          <div style="flex: 1;">
-            <label for="tarjeta-cvv" class="label" style="display: block; margin-bottom: 0.5rem;">CVV:</label>
-            <input type="password" id="tarjeta-cvv" placeholder="000" maxlength="4" style="width: 100%; padding: 0.75rem; border-radius: var(--border-radius); border: 1px solid var(--color-outline);">
-          </div>
-        </div>
-
-        <button type="submit" class="btn-artista" style="padding: 0.75rem 2rem; font-weight: bold;">Confirmar Reserva</button>
-      </form>
+      <a href="compra.html" 
+         style="display: inline-block; 
+                background-color: #ff6b6b; 
+                color: white; 
+                text-decoration: none; 
+                padding: 12px 32px; 
+                font-size: 1rem; 
+                font-weight: bold; 
+                border-radius: 8px; 
+                box-shadow: 0 4px 10px rgba(255, 107, 107, 0.25); 
+                transition: all 0.2s ease-in-out;
+                width: calc(100% - 40px);
+                max-width: 280px;">
+        ¡Comprar Entradas Aquí! 🎟️
+      </a>
     </section>
 
-  </main> ```
-
+  </main>
+  
   <div id="footer-container"></div>
 
   <script src="js/components/navbar.js"></script>
