@@ -291,3 +291,52 @@ main {
 .btn-artista:hover::after {
     opacity: 1;
 }
+
+/* =========================================================================
+   Ajuste responsive global: Evita que el Navbar tape el contenido en celulares
+   ========================================================================= */
+@media (max-width: 768px) {
+  main {
+    padding-top: 5.5rem; /* Empuja el contenido de todas las páginas hacia abajo */
+  }
+}
+
+/* =========================================================================
+   Estilos de la Pasarela de Pago e Información de Shows
+   ========================================================================= */
+
+/* Estilo para los carteles contenedores de los pasos */
+.purchase-form form > div {
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Mejora de los campos de entrada y selectores */
+.purchase-form select,
+.purchase-form input {
+  font-family: inherit;
+  font-size: 0.95rem;
+  border: 1px solid #ccc;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+/* Efecto focus cuando el usuario hace clic para escribir */
+.purchase-form select:focus,
+.purchase-form input:focus {
+  outline: none;
+  border-color: var(--color-terracotta, #ff6b6b);
+  box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.15);
+}
+
+/* El botón de confirmación con efectos de transición */
+#btn-confirmar {
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+#btn-confirmar:hover {
+  background-color: #d65656 !important; /* Un tono más oscuro al pasar el mouse */
+}
+
+#btn-confirmar:active {
+  transform: scale(0.98); /* Efecto de hundido al hacer clic */
+}
