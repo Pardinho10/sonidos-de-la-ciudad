@@ -25,8 +25,11 @@ header .nav-container {
 }
 
 header .logo a {
-  display: flex;
-  align-items: center;
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-terracotta);
+  letter-spacing: -0.02em;
 }
 
 header .logo a:hover {
@@ -127,12 +130,6 @@ nav {
 
 .hamburger::after {
   top: 7px;
-}
-
-header .logo img {
-  width: 130px;
-  height: auto;
-  display: block;
 }
 
 /* --- Responsive --- */
