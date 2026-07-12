@@ -11,6 +11,15 @@ var eventosJSON = [
 
 // 2. Patrones de Validación por Expresiones Regulares (Cecilia)
 var patrones = {
+    'interesado-nombre': {
+      regex: /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]{3,}$/,
+      mensajeError: 'Solo letras y espacios (mínimo 3 caracteres).'
+  },
+  'interesado-dni': {
+      regex: /^[0-9]{7,8}$/,
+      mensajeError: 'El DNI debe tener 7 u 8 dígitos.'
+  },
+
   'comprador-nombre-completo': {
       regex: /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]{3,}$/,
       mensajeError: 'Solo letras y espacios (mínimo 3 caracteres).'
@@ -78,16 +87,30 @@ function validarCampo(id) {
   return esValido;
 }
 
-// 4. Función global para validar TODO el formulario antes de enviar
+// 4. Función global para validar TODO el formulario antes de enviar (CORREGIDA PARA DESPLEGABLE)
 window.validarTodosLosCamposCecilia = function () {
   var todosValidos = true;
+  
   Object.keys(patrones).forEach(function(id) {
     var input = document.getElementById(id);
     if (!input) return;
+
+    // Si el contenedor de pago NO es visible todavía, ignoramos la validación visual 
+    // de los campos para evitar que se clave el despliegue inicial
+    var seccionPago = document.getElementById("seccion-pago");
+    var seccionPagoVisible = seccionPago && seccionPago.style.display === "block";
+
+    // Si la sección de pago no se abrió y el campo es de los nuevos o de la tarjeta, no validamos aún
+    if (!seccionPagoVisible && (id === 'interesado-nombre' || id === 'interesado-dni' || id.startsWith('tarjeta') || id.startsWith('pago'))) {
+      return; 
+    }
+
+    // Forzamos la validación visual de cada campo activo
     if (!validarCampo(id)) {
       todosValidos = false;
     }
   });
+  
   return todosValidos;
 };
 
@@ -140,6 +163,7 @@ function escucharCambioEvento() {
       avisoFecha.textContent = eventoEncontrado.fecha;
       avisoLugar.textContent = eventoEncontrado.lugar;
       
+      // Desplegamos ambos contenedores de golpe con total libertad
       contenedorInfo.style.display = "block";
       seccionPago.style.display = "block";
     } else {
@@ -184,7 +208,12 @@ function aplicarMascarasValidacion() {
   var inputCcv = document.getElementById("tarjeta-ccv");
   var inputTelefono = document.getElementById("pago-telefono");
   var inputNacimiento = document.getElementById("pago-fecha-nacimiento");
-
+  var inputDniInteresado = document.getElementById("interesado-dni");
+  if (inputDniInteresado) {
+    inputDniInteresado.addEventListener("input", function(e) {
+      e.target.value = e.target.value.replace(/\D/g, "").slice(0, 8);
+    });
+  }
   if (inputDni) {
     inputDni.addEventListener("input", function(e) {
       e.target.value = e.target.value.replace(/\D/g, "").slice(0, 8);
@@ -238,13 +267,15 @@ function aplicarMascarasValidacion() {
 function configurarEnvioFormulario() {
   var formulario = document.getElementById("form-reserva-pago");
   var selectEvento = document.getElementById("evento-select");
-  var inputNombre = document.getElementById("pago-nombre");
+  var inputNombreTarjeta = document.getElementById("pago-nombre"); // El dueño de la tarjeta
   
+  // Nuevos campos del interesado y contacto
+  var inputInteresado = document.getElementById("interesado-nombre");
+  var inputInteresadoDni = document.getElementById("interesado-dni");
   var inputEmail = document.getElementById("pago-email");
-  var inputComprador = document.getElementById("comprador-nombre-completo");
   var selectTipoEntrada = document.getElementById("tipo-entrada-select");
 
-  if (!formulario || !selectEvento || !inputNombre) return;
+  if (!formulario || !selectEvento || !inputNombreTarjeta) return;
 
   formulario.addEventListener("submit", function(e) {
     e.preventDefault();
@@ -255,11 +286,11 @@ function configurarEnvioFormulario() {
     }
 
     var nombreShow = selectEvento.options[selectEvento.selectedIndex].text;
-    var titular = inputNombre.value.trim();
+    var titularTarjeta = inputNombreTarjeta.value.trim();
+    var nombreAsistente = inputInteresado ? inputInteresado.value.trim() : titularTarjeta;
+    var dniAsistente = inputInteresadoDni ? inputInteresadoDni.value.trim() : "";
     var emailDestino = inputEmail ? inputEmail.value.trim() : "correo@ejemplo.com";
-    var nombreComprador = inputComprador ? inputComprador.value.trim() : titular;
     
-    // Evitamos errores si no existe el select de tipo de entrada en el HTML todavía
     var tipoEntrada = "General";
     if (selectTipoEntrada && selectTipoEntrada.selectedIndex !== -1) {
       tipoEntrada = selectTipoEntrada.options[selectTipoEntrada.selectedIndex].text;
@@ -269,39 +300,39 @@ function configurarEnvioFormulario() {
     var contenedorQR = document.getElementById("qrcode");
     if (contenedorQR) contenedorQR.innerHTML = "";
     
-    // 2. Generar QR Seguro (Evitando desbordamientos de texto)
-    var datosQR = `Show: ${nombreShow} | Tipo: ${tipoEntrada} | Ticket: ${nombreComprador}`;
+    // 2. EL CAMBIO CLAVE: El QR se genera con los datos del interesado real (Asistente)
+    var datosQR = `Show: ${nombreShow}\nAsistente: ${nombreAsistente}\nDNI: ${dniAsistente}\nTipo: ${tipoEntrada}`;
     
     if (typeof QRCode !== "undefined" && contenedorQR) {
       new QRCode(contenedorQR, {
         text: datosQR,
         width: 128,
         height: 128,
-        correctLevel: 0 // Forzamos nivel L (baja redundancia) para máxima compatibilidad de texto
+        correctLevel: 0 
       });
     }
 
-    // 3. Inyectar datos en la interfaz del correo simulado
+    // 3. ¡CORREGIDO!: Vinculamos el ID del dueño de la entrada con el nombre del asistente real
     var elMail = document.getElementById("mail-destino");
-    var elComp = document.getElementById("mail-comprador");
     var elShow = document.getElementById("mail-show");
     var elTipo = document.getElementById("mail-tipo-entrada");
-    var elTitu = document.getElementById("mail-titular");
+    var elDuenio = document.getElementById("mail-duenio-entrada"); // El nuevo ID del HTML
 
     if (elMail) elMail.textContent = emailDestino;
-    if (elComp) elComp.textContent = nombreComprador;
     if (elShow) elShow.textContent = nombreShow;
     if (elTipo) elTipo.textContent = tipoEntrada;
-    if (elTitu) elTitu.textContent = titular;
+    
+    // Acá forzamos que use 'nombreAsistente' (Dani Gomez) en lugar de la tarjeta (Sol Gomez)
+    if (elDuenio) elDuenio.textContent = nombreAsistente;
 
-    // 4. Mostrar el contenedor del mail simulado
+    // 4. Mostrar el comprobante del mail
     var modalEmail = document.getElementById("comprobante-email-modal");
     if (modalEmail) modalEmail.style.display = "block";
 
-    // 5. Mensaje de éxito
-    alert("¡Pago Procesado con éxito!\n\nSe ha generado tu pase digital y enviado el comprobante.");
+    // 5. Alerta final personalizada
+    alert(`¡Compra Exitosa!\n\nSe generó la entrada para ${nombreAsistente}. El pago fue procesado con la tarjeta de ${titularTarjeta}.`);
 
-    // Reseteo de campos y vistas
+    // Reseteo
     formulario.reset();
     var infoCont = document.getElementById("info-evento-contenedor");
     var secPago = document.getElementById("seccion-pago");
@@ -309,9 +340,7 @@ function configurarEnvioFormulario() {
     if (secPago) secPago.style.display = "none";
     
     var contenedorLogo = document.getElementById("tarjeta-logo");
-    if (contenedorLogo) {
-      contenedorLogo.textContent = "💳";
-    }
+    if (contenedorLogo) contenedorLogo.textContent = "💳";
   });
 }
 

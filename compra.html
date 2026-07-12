@@ -76,6 +76,23 @@
           </div>
         </div>
 
+        <!-- Campos del interesado/asistente (Agregado debajo de la info del show) -->
+<div id="datos-interesado-contenedor" style="margin-top: 15px; padding: 15px; border-top: 1px solid #eee;">
+  <h4 style="margin-top: 0; margin-bottom: 10px; color: #333;">Datos del Interesado</h4>
+  
+  <div class="form-group" style="margin-bottom: 12px;">
+    <label for="interesado-nombre" style="display: block; margin-bottom: 5px; font-weight: bold;">Nombre Completo:</label>
+    <input type="text" id="interesado-nombre" placeholder="Nombre de quien va a usar la entrada" required style="padding: 10px; width: 100%; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+    <span class="mensaje-error" id="error-interesado-nombre" style="display:block; color:#e53935; font-size:0.8rem;"></span>
+  </div>
+
+  <div class="form-group" style="margin-bottom: 12px;">
+    <label for="interesado-dni" style="display: block; margin-bottom: 5px; font-weight: bold;">DNI:</label>
+    <input type="text" id="interesado-dni" placeholder="DNI del asistente" required style="padding: 10px; width: 100%; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+    <span class="mensaje-error" id="error-interesado-dni" style="display:block; color:#e53935; font-size:0.8rem;"></span>
+  </div>
+</div>
+
         <!-- PASO 2: DATOS DEL COMPRADOR Y PAGO (Se muestra solo cuando se elige un show) -->
         <div id="seccion-pago" style="display: none; background: #fff8f2; padding: 20px; border-radius: 8px; margin-bottom: 20px; border: 1px solid #e9dfd6;">
           <h3 style="margin-top: 0; color: var(--color-terracotta);">2. Datos del Comprador</h3>
@@ -160,6 +177,7 @@
 
       </form>
 
+        <!-- 📥 COMPROBANTE DE EMAIL ACTUALIZADO CON LOS CAMPOS CORRECTOS -->
         <div id="comprobante-email-modal" style="display: none; margin-top: 30px; padding: 20px; border: 2px dashed #4caf50; border-radius: 8px; background-color: #f9f9f9; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
           <h3 style="color: #4caf50; margin-top: 0; display: flex; align-items: center; gap: 10px;">
             📧 [Simulación de Correo Enviado Exitosamente]
@@ -168,18 +186,18 @@
           <p><strong>De:</strong> entradas@sonidosdelaciudad.com</p>
           <p><strong>Para:</strong> <span id="mail-destino"></span></p>
           <p style="font-size: 1.1rem; line-height: 1.5;">
-            ¡Hola <strong id="mail-comprador"></strong>! Tu reserva ha sido confirmada. Aquí tienes los detalles de tu acceso al espectáculo:
+            ¡Hola! Tu reserva ha sido confirmada con éxito. Aquí tienes los detalles del acceso para el espectáculo:
           </p>
           
           <div style="background: white; padding: 15px; border-radius: 6px; border: 1px solid #eee; margin: 15px 0;">
             <p><strong>Espectáculo:</strong> <span id="mail-show"></span></p>
             <p><strong>Tipo de Entrada:</strong> <span id="mail-tipo-entrada" style="text-transform: uppercase; font-weight: bold; color: #e53935;"></span></p>
-            <p><strong>Titular del Pago:</strong> <span id="mail-titular"></span></p>
+            <p><strong>Dueño de la entrada:</strong> <span id="mail-duenio-entrada" style="font-weight: bold;"></span></p>
           </div>
 
-          <div style="text-align: center; margin-top: 20px; padding: 10px; background: #fff; border: 1px solid #ddd; inline-size: max-content; margin-inline: auto;">
+          <div style="text-align: center; margin-top: 20px; padding: 10px; background: #fff; border: 1px solid #ddd; width: max-content; margin-left: auto; margin-right: auto;">
             <p style="margin-top: 0; font-weight: bold; font-size: 0.9rem; color: #555;">Presentá este código QR en la entrada:</p>
-            <!-- Acá la librería va a dibujar el QR real -->
+            <!-- Acá la librería dibuja el QR -->
             <div id="qrcode" style="display: flex; justify-content: center; margin: 10px 0;"></div>
           </div>
         </div>
