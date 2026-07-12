@@ -14,7 +14,6 @@
 }
 
 /* ======= HERO DE ENTRADAS... ======== */
-
 .tickets-hero {
   min-height: 60vh;
   display: flex;
@@ -27,14 +26,12 @@
 }
 
 /* Título principal */
-
 .tickets-hero h1 {
   max-width: 800px;
 }
 
 
 /* Descripción */
-
 .tickets-hero p {
   max-width: 650px;
   font-size: 1.15rem;
@@ -42,12 +39,10 @@
 }
 
 /* ==========TIPOS DE ENTRADAS...============== */
-
 .tickets-section {
   padding: var(--spacing-xxl) 0;
   text-align: center;
 }
-
 
 .tickets-grid {
   display: grid;
@@ -55,7 +50,6 @@
   gap: var(--spacing-xl);
   margin-top: var(--spacing-xl);
 }
-
 
 .ticket-card {
   background-color: var(--color-surface);
@@ -66,17 +60,14 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-
 .ticket-card:hover {
   transform: translateY(-8px);
   box-shadow: 0 10px 25px rgba(34, 27, 11, 0.15);
 }
 
-
 .ticket-card h3 {
   color: var(--color-terracotta);
 }
-
 
 .ticket-price {
   font-size: 2rem;
@@ -85,20 +76,16 @@
   margin-bottom: var(--spacing-lg);
 }
 
-
 .ticket-card ul {
   list-style: none;
   margin-bottom: var(--spacing-lg);
 }
 
-
 .ticket-card li {
   margin-bottom: var(--spacing-sm);
 }
 
-
 /* Entrada destacada */
-
 .ticket-card.featured {
   border: 2px solid var(--color-terracotta);
   transform: scale(1.05);
@@ -113,14 +100,12 @@
   text-align: center;
 }
 
-
 .benefits {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--spacing-xl);
   margin-top: var(--spacing-xl);
 }
-
 
 .benefits article {
   background-color: var(--color-surface-container);
@@ -129,16 +114,13 @@
   transition: transform 0.3s ease;
 }
 
-
 .benefits article:hover {
   transform: translateY(-5px);
 }
 
-
 .benefits h3 {
   color: var(--color-terracotta);
 }
-
 
 .benefits p {
   color: var(--color-text-muted);
@@ -154,12 +136,10 @@
   margin: 0 auto;
 }
 
-
 .faq h2 {
   text-align: center;
   margin-bottom: var(--spacing-xl);
 }
-
 
 .faq article {
   background-color: var(--color-surface);
@@ -170,17 +150,14 @@
   transition: background-color 0.3s ease;
 }
 
-
 .faq article:hover {
   background-color: var(--color-surface-container);
 }
-
 
 .faq h3 {
   margin-bottom: var(--spacing-sm);
   font-size: 1.2rem;
 }
-
 
 .faq p {
   color: var(--color-text-muted);

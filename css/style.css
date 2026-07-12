@@ -4,7 +4,7 @@
    ============================================ */
 
 :root {
-  /* --- Tipografía Unificada (Jorge's Pautas) --- */
+  /* --- Tipografía Unificada --- */
   --font-heading: 'Montserrat', sans-serif;
   --font-body: 'Open Sans', sans-serif;
 
@@ -81,13 +81,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: clamp(2.2rem, 6vw, 3.5rem); /* Se encoge en celulares, crece en PC */
+  font-size: clamp(2.2rem, 6vw, 3.5rem); 
   font-weight: 700;
   letter-spacing: -0.02em;
 }
 
 h2 {
-  font-size: clamp(1.75rem, 5vw, 2.5rem); /* Totalmente fluido */
+  font-size: clamp(1.75rem, 5vw, 2.5rem); 
   font-weight: 600;
 }
 
@@ -162,7 +162,7 @@ main {
   border-radius: var(--border-radius-full);
   font-family: var(--font-body);
   font-weight: 600;
-  font-size: clamp(0.8rem, 2vw, 0.875rem); /* Botones responsivos */
+  font-size: clamp(0.8rem, 2vw, 0.875rem);
   letter-spacing: 0.05em;
   text-transform: uppercase;
   cursor: pointer;
@@ -230,23 +230,21 @@ main {
    FASE 2 - PERSONA 2: EFECTOS Y COMPONENTES UNIFICADOS (TODO EL SITIO)
    ========================================================================== */
 
-/* 1. Configuración base para que NADA recorte las sombras en las tarjetas */
+/* 1. Configuración base para las sombras en las tarjetas */
 .artista-card,
 .event-card {
     position: relative !important;
-    overflow: visible !important; /* Crucial para que la sombra no se mutile */
+    overflow: visible !important;
     z-index: 1;
-    /* Suavizado perfecto para la escala y la sombra pesada */
     transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease-in-out !important;
 }
 
-/* 2. El efecto Hover de Elevación y Sombra Intensa para TODO el proyecto */
+/* 2. El efecto Hover de Elevación y Sombra Intensa */
 .artista-card:hover,
 .event-card:hover {
-    transform: scale(1.03) !important; /* Efecto de agrandado */
-    /* Sombra nítida, visible y orgánica sobre fondos claros/crema */
+    transform: scale(1.03) !important;
     box-shadow: 0 20px 35px rgba(34, 27, 11, 0.35) !important; 
-    z-index: 50 !important; /* Se posiciona por encima de las demás al flotar */
+    z-index: 50 !important;
 }
 
 /* 3. Estilos unificados para los botones internos de las tarjetas */
@@ -270,7 +268,7 @@ main {
 
 .btn-artista:hover {
     background-color: var(--color-primary);
-    transform: translateY(-2px); /* Leve despegue del botón */
+    transform: translateY(-2px);
 }
 
 /* 4. Pseudoelemento (::after) - Destello interactivo en botones */

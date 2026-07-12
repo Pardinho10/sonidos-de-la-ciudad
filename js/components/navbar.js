@@ -1,7 +1,3 @@
-/**
- * navbar.js - Carga el componente navbar mediante fetch
- * y gestiona el menú hamburguesa para responsive
- */
 
 document.addEventListener('DOMContentLoaded', () => {
   const navbarContainer = document.getElementById('navbar-container');

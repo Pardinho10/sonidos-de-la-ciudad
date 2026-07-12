@@ -7,7 +7,7 @@
   margin-bottom: var(--spacing-xl);
 }
 
-/* --- Encabezado (mismo criterio que Cronograma y Artistas) --- */
+/* --- Encabezado --- */
 
 .ubicacion-header h1 {
   color: var(--color-primary);

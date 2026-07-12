@@ -2,9 +2,7 @@
    CONTACTO - Estilos de la página
    ============================================ */
 
-
 /* Hero */
-
 .contact-hero {
   min-height: 50vh;
   display: flex;
@@ -22,9 +20,7 @@
   font-size: 1.1rem;
 }
 
-
 /* Información */
-
 .contact-info {
   padding: var(--spacing-xxl) 0;
   text-align: center;

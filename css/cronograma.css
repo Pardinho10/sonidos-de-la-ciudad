@@ -188,7 +188,6 @@ tbody tr:hover td {
 }
 
 /* --- Responsive: 3 puntos de control --- */
-
 /* Tablet */
 @media (max-width: 992px) {
   table, thead, tbody, th, td, tr {

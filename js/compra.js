@@ -9,7 +9,7 @@ var eventosJSON = [
   { id: "jazz-2026", titulo: "Trío de Jazz Local", fecha: "Domingo 16 de Noviembre, 2026", lugar: "Bar Cultural La Ferretería" }
 ];
 
-// 2. Patrones de Validación por Expresiones Regulares (Cecilia)
+// 2. Patrones de Validación por Expresiones Regulares 
 var patrones = {
     'interesado-nombre': {
       regex: /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]{3,}$/,
@@ -87,7 +87,7 @@ function validarCampo(id) {
   return esValido;
 }
 
-// 4. Función global para validar TODO el formulario antes de enviar (CORREGIDA PARA DESPLEGABLE)
+// 4. Función global para validar el formulario antes de enviar
 window.validarTodosLosCamposCecilia = function () {
   var todosValidos = true;
   
@@ -95,8 +95,7 @@ window.validarTodosLosCamposCecilia = function () {
     var input = document.getElementById(id);
     if (!input) return;
 
-    // Si el contenedor de pago NO es visible todavía, ignoramos la validación visual 
-    // de los campos para evitar que se clave el despliegue inicial
+    // Si el contenedor de pago no es visible todavía, ignoramos la validación visual 
     var seccionPago = document.getElementById("seccion-pago");
     var seccionPagoVisible = seccionPago && seccionPago.style.display === "block";
 
@@ -105,7 +104,6 @@ window.validarTodosLosCamposCecilia = function () {
       return; 
     }
 
-    // Forzamos la validación visual de cada campo activo
     if (!validarCampo(id)) {
       todosValidos = false;
     }
@@ -114,7 +112,7 @@ window.validarTodosLosCamposCecilia = function () {
   return todosValidos;
 };
 
-// 5. Inicializar escuchadores para validación en tiempo real (Input y Blur)
+// 5. Inicializar escuchadores para validación en tiempo real
 function activarValidacionesTiempoReal() {
   Object.keys(patrones).forEach(function(id) {
     var input = document.getElementById(id);
@@ -163,7 +161,7 @@ function escucharCambioEvento() {
       avisoFecha.textContent = eventoEncontrado.fecha;
       avisoLugar.textContent = eventoEncontrado.lugar;
       
-      // Desplegamos ambos contenedores de golpe con total libertad
+      // Desplegamos ambos contenedores
       contenedorInfo.style.display = "block";
       seccionPago.style.display = "block";
     } else {
@@ -200,7 +198,7 @@ function detectarFranquiciaTarjeta() {
   });
 }
 
-// 9. Filtrar entradas y aplicar máscaras a los campos de pago (UX) - LLAVES CORREGIDAS
+// 9. Filtrar entradas y aplicar máscaras a los campos de pago 
 function aplicarMascarasValidacion() {
   var inputDni = document.getElementById("pago-dni");
   var inputNumero = document.getElementById("tarjeta-numero");
@@ -268,8 +266,6 @@ function configurarEnvioFormulario() {
   var formulario = document.getElementById("form-reserva-pago");
   var selectEvento = document.getElementById("evento-select");
   var inputNombreTarjeta = document.getElementById("pago-nombre"); // El dueño de la tarjeta
-  
-  // Nuevos campos del interesado y contacto
   var inputInteresado = document.getElementById("interesado-nombre");
   var inputInteresadoDni = document.getElementById("interesado-dni");
   var inputEmail = document.getElementById("pago-email");
@@ -312,17 +308,17 @@ function configurarEnvioFormulario() {
       });
     }
 
-    // 3. ¡CORREGIDO!: Vinculamos el ID del dueño de la entrada con el nombre del asistente real
+    // 3. Vinculamos el ID del dueño de la entrada con el nombre del asistente real
     var elMail = document.getElementById("mail-destino");
     var elShow = document.getElementById("mail-show");
     var elTipo = document.getElementById("mail-tipo-entrada");
-    var elDuenio = document.getElementById("mail-duenio-entrada"); // El nuevo ID del HTML
+    var elDuenio = document.getElementById("mail-duenio-entrada"); 
 
     if (elMail) elMail.textContent = emailDestino;
     if (elShow) elShow.textContent = nombreShow;
     if (elTipo) elTipo.textContent = tipoEntrada;
     
-    // Acá forzamos que use 'nombreAsistente' (Dani Gomez) en lugar de la tarjeta (Sol Gomez)
+    // Acá forzamos que use 'nombreAsistente' en lugar del propietario de la tarjeta 
     if (elDuenio) elDuenio.textContent = nombreAsistente;
 
     // 4. Mostrar el comprobante del mail
