@@ -1,8 +1,158 @@
 /* ============================================
-   ARTISTAS - Estilos de la página de Artistas
+   SONIDOS DE LA CIUDAD - PAGINA ARTISTAS
+   Estilos específicos para el Line Up
    ============================================ */
 
-/* Tarjetas de artistas */
+/* --- Contenedor Principal (Empuja el contenido abajo del navbar) --- */
+.page-content {
+    padding-top: 140px; 
+    margin-bottom: var(--spacing-xl);
+}
+
+/* --- Contenedor de la Sección --- */
+.artists-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xl);
+}
+
+/* --- Encabezado --- */
+.artists-header h1 {
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-sm);
+}
+
+.artists-header p {
+    color: var(--color-text-muted);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* --- Lista de Géneros (Diseño Horizontal) --- */
+.festival-genres {
+    background-color: var(--color-surface-container);
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-radius: var(--border-radius);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    align-items: center;
+}
+
+.festival-genres ul {
+    list-style: none;
+    display: flex;
+    gap: var(--spacing-lg);
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.festival-genres li {
+    font-family: var(--font-body);
+    font-weight: 600;
+    color: var(--color-charcoal);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.festival-genres li i {
+    color: var(--color-terracotta);
+}
+
+/* --- Grilla de Artistas (Responsiva y Horizontal) --- */
+.artists-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-xl);
+    margin-top: var(--spacing-md);
+}
+
+/* --- Tarjeta de Artista --- */
 .artist-card {
-  /* Estilos para las tarjetas de artistas */
+    background-color: var(--color-white);
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(34, 27, 11, 0.05);
+    border: 1px solid var(--color-outline-variant);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.artist-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(34, 27, 11, 0.1);
+}
+
+/* Contenedor de Imagen */
+.artist-image-container {
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    background-color: var(--color-surface-container);
+}
+
+.artist-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.artist-card:hover .artist-image-container img {
+    transform: scale(1.05);
+}
+
+/* Cuerpo de la Tarjeta */
+.artist-body {
+    padding: var(--spacing-lg);
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: var(--spacing-sm);
+}
+
+.artist-body h2 {
+    font-size: 1.75rem;
+    margin-bottom: 0;
+    color: var(--color-charcoal);
+}
+
+/* Badge de Género */
+.badge-genre {
+    align-self: flex-start;
+    background-color: rgba(138, 154, 91, 0.15);
+    color: var(--color-sage);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--border-radius);
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.artist-bio {
+    color: var(--color-text-dark);
+    margin-bottom: var(--spacing-md);
+    flex-grow: 1;
+}
+
+/* Sección del Reproductor */
+.artist-audio {
+    border-top: 1px solid var(--color-outline-variant);
+    padding-top: var(--spacing-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.artist-audio .label {
+    color: var(--color-ochre);
+}
+
+.artist-audio audio {
+    width: 100%;
+    height: 40px;
 }
