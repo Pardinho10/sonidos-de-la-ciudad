@@ -159,6 +159,30 @@
         </div>
 
       </form>
+
+        <div id="comprobante-email-modal" style="display: none; margin-top: 30px; padding: 20px; border: 2px dashed #4caf50; border-radius: 8px; background-color: #f9f9f9; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+          <h3 style="color: #4caf50; margin-top: 0; display: flex; align-items: center; gap: 10px;">
+            📧 [Simulación de Correo Enviado Exitosamente]
+          </h3>
+          <hr style="border: 0; border-top: 1px solid #ccc; margin-bottom: 15px;">
+          <p><strong>De:</strong> entradas@sonidosdelaciudad.com</p>
+          <p><strong>Para:</strong> <span id="mail-destino"></span></p>
+          <p style="font-size: 1.1rem; line-height: 1.5;">
+            ¡Hola <strong id="mail-comprador"></strong>! Tu reserva ha sido confirmada. Aquí tienes los detalles de tu acceso al espectáculo:
+          </p>
+          
+          <div style="background: white; padding: 15px; border-radius: 6px; border: 1px solid #eee; margin: 15px 0;">
+            <p><strong>Espectáculo:</strong> <span id="mail-show"></span></p>
+            <p><strong>Tipo de Entrada:</strong> <span id="mail-tipo-entrada" style="text-transform: uppercase; font-weight: bold; color: #e53935;"></span></p>
+            <p><strong>Titular del Pago:</strong> <span id="mail-titular"></span></p>
+          </div>
+
+          <div style="text-align: center; margin-top: 20px; padding: 10px; background: #fff; border: 1px solid #ddd; inline-size: max-content; margin-inline: auto;">
+            <p style="margin-top: 0; font-weight: bold; font-size: 0.9rem; color: #555;">Presentá este código QR en la entrada:</p>
+            <!-- Acá la librería va a dibujar el QR real -->
+            <div id="qrcode" style="display: flex; justify-content: center; margin: 10px 0;"></div>
+          </div>
+        </div>
     </section>
   </main>
   <!-- Footer inyectado por JS -->
@@ -168,6 +192,7 @@
   <script src="js/components/navbar.js"></script>
   <script src="js/components/footer.js"></script>
   <script src="js/main.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <script src="js/compra.js"></script>
   <script src="js/compra-validaciones-cecilia.js"></script>
 </body>
