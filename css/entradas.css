@@ -2,7 +2,186 @@
    ENTRADAS - Estilos de la página de Entradas
    ============================================ */
 
-/* Tabla de precios */
+/* Espacio para compensar navbar fijo... */
+.tickets-hero {
+  padding-top: 7rem;
+  text-align: center;
+}
+
+ /* Tabla de precios */
 .pricing-table {
   /* Estilos de la tabla de precios */
+}
+
+/* ======= HERO DE ENTRADAS... ======== */
+
+.tickets-hero {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-md);
+  text-align: center;
+  padding: 7rem var(--spacing-md) 3rem;
+}
+
+/* Título principal */
+
+.tickets-hero h1 {
+  max-width: 800px;
+}
+
+
+/* Descripción */
+
+.tickets-hero p {
+  max-width: 650px;
+  font-size: 1.15rem;
+  color: var(--color-text-muted);
+}
+
+/* ==========TIPOS DE ENTRADAS...============== */
+
+.tickets-section {
+  padding: var(--spacing-xxl) 0;
+  text-align: center;
+}
+
+
+.tickets-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-xl);
+  margin-top: var(--spacing-xl);
+}
+
+
+.ticket-card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-outline-variant);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-xl);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+.ticket-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(34, 27, 11, 0.15);
+}
+
+
+.ticket-card h3 {
+  color: var(--color-terracotta);
+}
+
+
+.ticket-price {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-charcoal);
+  margin-bottom: var(--spacing-lg);
+}
+
+
+.ticket-card ul {
+  list-style: none;
+  margin-bottom: var(--spacing-lg);
+}
+
+
+.ticket-card li {
+  margin-bottom: var(--spacing-sm);
+}
+
+
+/* Entrada destacada */
+
+.ticket-card.featured {
+  border: 2px solid var(--color-terracotta);
+  transform: scale(1.05);
+}
+
+/* ============================================
+   BENEFICIOS DE LA ENTRADA
+   ============================================ */
+
+.ticket-info {
+  padding: var(--spacing-xxl) 0;
+  text-align: center;
+}
+
+
+.benefits {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-xl);
+  margin-top: var(--spacing-xl);
+}
+
+
+.benefits article {
+  background-color: var(--color-surface-container);
+  padding: var(--spacing-xl);
+  border-radius: var(--border-radius-lg);
+  transition: transform 0.3s ease;
+}
+
+
+.benefits article:hover {
+  transform: translateY(-5px);
+}
+
+
+.benefits h3 {
+  color: var(--color-terracotta);
+}
+
+
+.benefits p {
+  color: var(--color-text-muted);
+}
+
+/* ============================================
+   PREGUNTAS FRECUENTES
+   ============================================ */
+
+.faq {
+  padding: var(--spacing-xxl) 0;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+
+.faq h2 {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+}
+
+
+.faq article {
+  background-color: var(--color-surface);
+  border-left: 4px solid var(--color-terracotta);
+  padding: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
+  border-radius: var(--border-radius);
+  transition: background-color 0.3s ease;
+}
+
+
+.faq article:hover {
+  background-color: var(--color-surface-container);
+}
+
+
+.faq h3 {
+  margin-bottom: var(--spacing-sm);
+  font-size: 1.2rem;
+}
+
+
+.faq p {
+  color: var(--color-text-muted);
 }
