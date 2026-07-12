@@ -1,5 +1,5 @@
 // =========================================================================
-// LÓGICA DE COMPRA DE ENTRADAS (Persona 2 - Sol)
+// LÓGICA DE COMPRA DE ENTRADAS
 // =========================================================================
 
 // 1. Array de eventos oficiales con sus respectivas fechas y lugares fijos
@@ -23,7 +23,7 @@ function cargarSelectorEventos() {
   }
 }
 
-// 3. Manejar el cambio de show: MOSTRAR texto de aviso y ACTIVAR formulario de pago
+// 3. Manejar el cambio de show: MOSTRAR texto de aviso y ACTIVVAR formulario de pago
 function escucharCambioEvento() {
   var selectEvento = document.getElementById("evento-select");
   var contenedorInfo = document.getElementById("info-evento-contenedor");
@@ -49,7 +49,7 @@ function escucharCambioEvento() {
       avisoFecha.textContent = eventoEncontrado.fecha;
       avisoLugar.textContent = eventoEncontrado.lugar;
       
-      // CORREGIDO: Ahora con un solo .style para que funcione perfecto
+      // con un solo .style para que funcione perfecto
       contenedorInfo.style.display = "block";
       seccionPago.style.display = "block";
     } else {
@@ -111,7 +111,7 @@ function aplicarMascarasValidacion() {
   // Máscara de Vencimiento: Agrega la barra / automáticamente (MM/AA)
   if (inputVence) {
     inputVence.addEventListener("input", function(e) {
-      var valor = e.target.value.replace(/\D/g, ""); // Quitamos lo que no sea número
+      var valor = e.target.value.replace(/\D/g, ""); 
       if (valor.length > 2) {
         e.target.value = valor.slice(0, 2) + "/" + valor.slice(2, 4);
       } else {
@@ -128,7 +128,7 @@ function aplicarMascarasValidacion() {
   }
 }
 
-// 6. Escuchar el envío del formulario y simular el éxito de la compra
+// 6. Escuchar el envi del formulario y simular el éxito de la compra
 function configurarEnvioFormulario() {
   var formulario = document.getElementById("form-reserva-pago");
   var selectEvento = document.getElementById("evento-select");
@@ -137,13 +137,16 @@ function configurarEnvioFormulario() {
   if (!formulario || !selectEvento || !inputNombre) return;
 
   formulario.addEventListener("submit", function(e) {
-    e.preventDefault(); // Evita que la página se recargue por completo
+    e.preventDefault();
+      if (!window.validarTodosLosCamposCecilia()) {
+      return;
+  }
 
     // Obtenemos el nombre del show seleccionado para el cartel
     var nombreShow = selectEvento.options[selectEvento.selectedIndex].text;
     var titular = inputNombre.value.trim();
 
-    // Mensaje de éxito profesional
+  
     alert(
       "¡Procesando Pago!\n\n" +
       "Muchas gracias " + titular + ".\n" +
