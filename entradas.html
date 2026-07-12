@@ -39,18 +39,34 @@
 
   <!-- Hero de entradas -->
   
-  <section class="tickets-hero">
-    <h1>Elegí tu experiencia en el festival</h1>
-    
-    <p>
-      Encontrá la entrada perfecta para vivir Sonidos de la Ciudad.
-      Música, artistas locales y una experiencia única.
-    </p>
+<section class="tickets-hero">
 
-    <a href="compra.html" class="btn btn-primary">
-      Comprar entradas
-    </a>
-  </section>
+    <img src="assets/img/banners/fest1.png"
+         class="hero-slide active"
+         alt="Festival Sonidos de la Ciudad">
+
+    <img src="assets/img/banners/fest2.png"
+         class="hero-slide"
+         alt="Entradas al festival">
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+
+        <h1>Elegí tu experiencia en el festival</h1>
+
+        <p>
+            Encontrá la entrada perfecta para vivir Sonidos de la Ciudad.
+            Música, artistas locales y una experiencia única.
+        </p>
+
+        <a href="compra.html" class="btn btn-primary">
+            Comprar entradas
+        </a>
+
+    </div>
+
+</section>
 
 
   <!-- Tipos de entradas -->
@@ -61,8 +77,11 @@
     <div class="tickets-grid">
 
       <article class="ticket-card">
-        <h3>Entrada General</h3>
-        <p class="ticket-price">$15.000</p>
+          <i class="fa-solid fa-ticket ticket-icon"></i>
+
+          <h3>Entrada General</h3>
+
+          <p class="ticket-price">$15.000</p>
 
         <ul>
           <li>Acceso al festival</li>
@@ -77,8 +96,11 @@
 
 
       <article class="ticket-card featured">
-        <h3>Entrada VIP</h3>
-        <p class="ticket-price">$30.000</p>
+          <i class="fa-solid fa-crown ticket-icon"></i>
+
+          <h3>Entrada VIP</h3>
+
+          <p class="ticket-price">$30.000</p>
 
         <ul>
           <li>Acceso preferencial</li>
@@ -93,8 +115,11 @@
 
 
       <article class="ticket-card">
-        <h3>Experiencia Completa</h3>
-        <p class="ticket-price">$50.000</p>
+          <i class="fa-solid fa-star ticket-icon"></i>
+
+          <h3>Experiencia Completa</h3>
+
+          <p class="ticket-price">$50.000</p>
 
         <ul>
           <li>Acceso total</li>
@@ -115,36 +140,43 @@
   <!-- Información adicional -->
   <section class="ticket-info">
 
-    <h2>Tu entrada incluye</h2>
+  <h2>Tu entrada incluye</h2>
 
-    <div class="benefits">
-
-      <article>
-        <h3>🎵 Música</h3>
-        <p>
-          Disfrutá artistas locales y propuestas emergentes.
-        </p>
-      </article>
-
+  <div class="benefits">
 
       <article>
-        <h3> Experiencia</h3>
-        <p>
-          Un espacio pensado para compartir y disfrutar.
-        </p>
-      </article>
+  <i class="fa-solid fa-guitar benefit-icon"></i>
 
+  <h3>Música en vivo</h3>
 
-      <article>
-        <h3>📍 Comunidad</h3>
-        <p>
-          Celebramos la cultura y los sonidos de nuestra ciudad.
-        </p>
-      </article>
+  <p>
+    Disfrutá artistas locales y propuestas emergentes durante toda la jornada.
+  </p>
+</article>
 
-    </div>
+<article>
+  <i class="fa-solid fa-ticket benefit-icon"></i>
 
-  </section>
+  <h3>Experiencia Festival</h3>
+
+  <p>
+    Viví una experiencia diseñada para compartir, descubrir y disfrutar cada escenario.
+  </p>
+</article>
+
+<article>
+  <i class="fa-solid fa-headphones benefit-icon"></i>
+
+  <h3>Comunidad</h3>
+
+  <p>
+    Formá parte de una comunidad que celebra la música, la cultura y el talento local.
+  </p>
+</article>
+
+  </div>
+
+</section>
 
 
   <!-- Preguntas frecuentes -->
@@ -178,6 +210,7 @@
   <script src="js/components/navbar.js"></script>
   <script src="js/components/footer.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/entradas.js"></script>
 </body>
 </html>
 

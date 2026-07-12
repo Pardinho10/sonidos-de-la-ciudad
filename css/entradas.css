@@ -1,44 +1,71 @@
 /* ============================================
-   ENTRADAS - Estilos de la página de Entradas
+   HERO CARRUSEL DE ENTRADAS
    ============================================ */
 
-/* Espacio para compensar navbar fijo... */
-.tickets-hero {
-  padding-top: 7rem;
-  text-align: center;
+.tickets-hero{
+    position: relative;
+    min-height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    text-align: center;
 }
 
- /* Tabla de precios */
-.pricing-table {
-  /* Estilos de la tabla de precios */
+/* Imágenes del carrusel */
+
+.hero-slide{
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    opacity: 0;
+
+    transition: opacity 1s ease;
 }
 
-/* ======= HERO DE ENTRADAS... ======== */
-
-.tickets-hero {
-  min-height: 60vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: var(--spacing-md);
-  text-align: center;
-  padding: 7rem var(--spacing-md) 3rem;
+.hero-slide.active{
+    opacity: 1;
 }
 
-/* Título principal */
+/* Capa oscura */
 
-.tickets-hero h1 {
-  max-width: 800px;
+.hero-overlay{
+    position: absolute;
+    inset: 0;
+
+    background: rgba(0,0,0,.45);
+
+    z-index: 1;
 }
 
+/* Contenido */
 
-/* Descripción */
+.hero-content{
+    position: relative;
+    z-index: 2;
 
-.tickets-hero p {
-  max-width: 650px;
-  font-size: 1.15rem;
-  color: var(--color-text-muted);
+    max-width: 800px;
+
+    padding: 2rem;
+}
+
+.hero-content h1{
+    color: white;
+}
+
+.hero-content p{
+    color: rgba(255,255,255,.9);
+
+    font-size: 1.15rem;
+
+    max-width: 650px;
+
+    margin: 0 auto 2rem;
 }
 
 /* ==========TIPOS DE ENTRADAS...============== */
@@ -130,8 +157,11 @@
 }
 
 
-.benefits article:hover {
-  transform: translateY(-5px);
+.benefits article:hover{
+
+    transform: translateY(-8px);
+
+    box-shadow: 0 14px 35px rgba(0,0,0,.18);
 }
 
 
@@ -185,3 +215,272 @@
 .faq p {
   color: var(--color-text-muted);
 }
+
+/* ============================================
+   ÍCONOS BENEFICIOS
+   ============================================ */
+
+.benefit-icon{
+    font-size: 3rem;
+    color: var(--color-terracotta);
+
+    margin-bottom: 1rem;
+
+    transition:
+        transform .35s ease,
+        color .35s ease,
+        text-shadow .35s ease;
+}
+
+
+/* brillo suave */
+
+/* Efectos neón individuales */
+
+.benefits article:hover .benefit-icon{
+    transform: scale(1.15) rotate(-6deg);
+}
+
+
+/* Guitarra - verde neón */
+.benefits article:nth-child(1):hover .benefit-icon{
+
+    color: #39ff88;
+
+    text-shadow:
+        0 0 6px rgba(57,255,136,.9),
+        0 0 14px rgba(57,255,136,.7),
+        0 0 28px rgba(57,255,136,.5);
+}
+
+
+/* Ticket - violeta neón */
+.benefits article:nth-child(2):hover .benefit-icon{
+
+    color: #c77dff;
+
+    text-shadow:
+        0 0 6px rgba(199,125,255,.9),
+        0 0 14px rgba(199,125,255,.7),
+        0 0 28px rgba(199,125,255,.5);
+}
+
+
+/* Auriculares - azul/celeste neón */
+.benefits article:nth-child(3):hover .benefit-icon{
+
+    color: #00e5ff;
+
+    text-shadow:
+        0 0 6px rgba(0,229,255,.9),
+        0 0 14px rgba(0,229,255,.7),
+        0 0 28px rgba(0,229,255,.5);
+}
+
+
+/* separa mejor el título */
+
+.benefits h3{
+
+    margin-top: .8rem;
+}
+
+/* ============================================
+   ICONOS DE TIPOS DE ENTRADA
+   ============================================ */
+
+.ticket-icon{
+
+    font-size: 2.5rem;
+
+    color: var(--color-terracotta);
+
+    margin-bottom: 1rem;
+
+    transition:
+        transform .3s ease,
+        color .3s ease,
+        text-shadow .3s ease;
+}
+
+
+/* Movimiento general */
+
+.ticket-card:hover .ticket-icon{
+
+    transform: scale(1.15);
+
+}
+
+
+/* Entrada General - verde neón */
+
+.ticket-card:nth-child(1):hover .ticket-icon{
+
+    color: #39ff88;
+
+    text-shadow:
+        0 0 8px rgba(57,255,136,.9),
+        0 0 20px rgba(57,255,136,.6);
+
+}
+
+
+/* Entrada VIP - violeta neón */
+
+.ticket-card:nth-child(2):hover .ticket-icon{
+
+    color: #c77dff;
+
+    text-shadow:
+        0 0 8px rgba(199,125,255,.9),
+        0 0 20px rgba(199,125,255,.6);
+
+}
+
+
+/* Experiencia Completa - azul neón */
+
+.ticket-card:nth-child(3):hover .ticket-icon{
+
+    color: #00e5ff;
+
+    text-shadow:
+        0 0 8px rgba(0,229,255,.9),
+        0 0 20px rgba(0,229,255,.6);
+
+}
+
+/* ============================================
+   BOTONES DE COMPRA - ENTRADAS
+   ============================================ */
+
+.ticket-card .btn {
+
+    transition:
+        transform .3s ease,
+        box-shadow .3s ease,
+        background-color .3s ease,
+        color .3s ease;
+}
+
+
+/* Botones secundarios con estilo festival */
+
+.ticket-card .btn-secondary {
+
+    background-color: var(--color-terracotta);
+
+    color: var(--color-on-primary);
+
+    border: none;
+
+}
+
+
+/* Hover general */
+
+.ticket-card .btn:hover {
+
+    transform: translateY(-3px);
+
+}
+
+
+/* General */
+
+.ticket-card:nth-child(1) .btn:hover {
+
+    background-color: #39ff88;
+
+    color: #1b1b1b;
+
+    box-shadow:
+        0 0 10px rgba(57,255,136,.7),
+        0 0 20px rgba(57,255,136,.4);
+
+}
+
+
+/* VIP */
+
+.ticket-card:nth-child(2) .btn:hover {
+
+    background-color: #c77dff;
+
+    color: white;
+
+    box-shadow:
+        0 0 10px rgba(199,125,255,.8),
+        0 0 25px rgba(199,125,255,.5);
+
+}
+
+
+/* Experiencia completa */
+
+.ticket-card:nth-child(3) .btn:hover {
+
+    background-color: #00e5ff;
+
+    color: #1b1b1b;
+
+    box-shadow:
+        0 0 10px rgba(0,229,255,.8),
+        0 0 25px rgba(0,229,255,.5);
+
+}
+
+@media (max-width: 768px) {
+
+  main {
+    padding-bottom: 0;
+  }
+
+}
+
+/* ============================================
+   RESPONSIVE - ENTRADAS
+   ============================================ */
+
+@media (max-width: 768px) {
+
+  .tickets-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+
+  .ticket-card {
+    width: 100%;
+    padding: 1.5rem;
+  }
+
+
+  .ticket-card.featured {
+    transform: none;
+  }
+
+
+  .tickets-hero h1 {
+    font-size: 2.2rem;
+  }
+
+
+  .tickets-hero p {
+    font-size: 1rem;
+  }
+
+
+  .benefits {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+
+  .faq {
+    padding: 2rem 0;
+  }
+
+}
+
