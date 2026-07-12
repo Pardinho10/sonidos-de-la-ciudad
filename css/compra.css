@@ -1,7 +1,11 @@
 /* ============================================
-   COMPRA - Estilos de la página de Compra de Entradas (TAP3)
+   COMPRA - Estilos de la página de Compra de Entradas
    ============================================ */
 
+
+.page-content {
+  padding-top: 140px;
+}
 /* Formulario de compra */
 .purchase-form {
   /* Estilos del formulario */
