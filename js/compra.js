@@ -1,12 +1,12 @@
 // =========================================================================
 // LÓGICA DE COMPRA DE ENTRADAS Y VALIDACIONES (UNIFICADO Y CORREGIDO)
-// =========================================================================
+// ========================================================
 
 // 1. Array de eventos oficiales con sus respectivas fechas y lugares fijos
 var eventosJSON = [
-  { id: "rock-2026", titulo: "Los Redonditos de Ricota (Tributo)", fecha: "Viernes 14 de Noviembre, 2026", lugar: "Estadio Madre de Ciudades" },
-  { id: "edm-2026", titulo: "Varios DJs Nacionales", fecha: "Sábado 15 de Noviembre, 2026", lugar: "Complejo Urbano" },
-  { id: "jazz-2026", titulo: "Trío de Jazz Local", fecha: "Domingo 16 de Noviembre, 2026", lugar: "Bar Cultural La Ferretería" }
+  { id: "rock-2026", titulo: "Los Redonditos de Ricota (Tributo)", fecha: "Viernes 14 de Noviembre, 2026", lugar: "Estadio Madre de Ciudades - Acceso Platea: Este." },
+  { id: "edm-2026", titulo: "Varios DJs Nacionales", fecha: "Sábado 15 de Noviembre, 2026", lugar: "Estadio Madre de Ciudades - Acceso Popular: Norte." },
+  { id: "jazz-2026", titulo: "Trío de Jazz Local", fecha: "Domingo 16 de Noviembre, 2026", lugar: "Estadio Madre de Ciudades - Acceso Platea: Oeste" }
 ];
 
 // 2. Patrones de Validación por Expresiones Regulares 
@@ -15,6 +15,12 @@ var patrones = {
       regex: /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]{3,}$/,
       mensajeError: 'Solo letras y espacios (mínimo 3 caracteres).'
   },
+
+    'cantidad-entradas': {
+      regex: /^[1-6]$/,
+      mensajeError: 'Debe ser un número entre 1 y 6.'
+    },
+
   'interesado-dni': {
       regex: /^[0-9]{7,8}$/,
       mensajeError: 'El DNI debe tener 7 u 8 dígitos.'
@@ -36,6 +42,7 @@ var patrones = {
       regex: /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/([0-9]{4})$/, 
       mensajeError: 'Formato inválido. Use DD/MM/AAAA (ej: 15/03/2000).'
   },
+
   'pago-nombre': {
     regex: /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]{3,}$/,
     mensajeError: 'Solo letras y espacios (mínimo 3 caracteres).'
@@ -88,7 +95,7 @@ function validarCampo(id) {
 }
 
 // 4. Función global para validar el formulario antes de enviar
-window.validarTodosLosCamposCecilia = function () {
+window.validarTodoElFormulario = function () {
   var todosValidos = true;
   
   Object.keys(patrones).forEach(function(id) {
@@ -107,10 +114,24 @@ window.validarTodosLosCamposCecilia = function () {
     if (!validarCampo(id)) {
       todosValidos = false;
     }
-  });
-  
-  return todosValidos;
-};
+    if (!seccionPagoVisible && (id === 'interesado-nombre' || id === 'interesado-dni' || id.startsWith('tarjeta') || id.startsWith('pago'))) {
+      return; 
+    }
+
+      if (!validarCampo(id)) {
+        todosValidos = false;
+      }
+    });
+
+    if (!validarFechaNacimiento()) {
+      todosValidos = false;
+    }
+    if (!validarVencimientoTarjeta()) { 
+      todosValidos = false;
+    }
+    
+    return todosValidos
+  };
 
 // 5. Inicializar escuchadores para validación en tiempo real
 function activarValidacionesTiempoReal() {
@@ -171,7 +192,7 @@ function escucharCambioEvento() {
   });
 }
 
-// 8. Detectar franquicia de tarjeta (Visa, MasterCard, Amex)
+// 8. Detectar Banco de tarjeta (Visa, MasterCard, Amex)
 function detectarFranquiciaTarjeta() {
   var inputNumero = document.getElementById("tarjeta-numero");
   var contenedorLogo = document.getElementById("tarjeta-logo");
@@ -261,6 +282,176 @@ function aplicarMascarasValidacion() {
   }
 }
 
+// Validación completa de fecha de nacimiento: formato + fecha real + mayoría de edad
+function validarFechaNacimiento() {
+  var input = document.getElementById('pago-fecha-nacimiento');
+  var span = document.getElementById('error-pago-fecha-nacimiento');
+
+  if (!input || !span) return false;
+
+  var valor = input.value.trim();
+
+  if (valor === '') {
+    input.style.borderColor = '#ccc';
+    span.textContent = '';
+    return false;
+  }
+
+  // Validación completa de vencimiento de tarjeta: formato / que sea fecha futura
+function validarVencimientoTarjeta() {
+  var input = document.getElementById('tarjeta-vence');
+  var span = document.getElementById('error-tarjeta-vence');
+
+  if (!input || !span) return false;
+
+  var valor = input.value.trim();
+
+  if (valor === '') {
+    input.style.borderColor = '#ccc';
+    span.textContent = '';
+    return false;
+  }
+
+  // Validar FORMATO con Regex (MM/AA)
+  var formatoRegex = /^(0[1-9]|1[0-2])\/([0-9]{2})$/;
+  if (!formatoRegex.test(valor)) {
+    input.style.borderColor = '#e53935';
+    span.textContent = 'Formato inválido. Use MM/AA (ej: 09/28).';
+    return false;
+  }
+
+  var partes = valor.split('/');
+  var mesTarjeta = parseInt(partes[0], 10);
+  var anioTarjeta = parseInt(partes[1], 10) + 2000; // "28" -> 2028
+
+  // Validar que sea FECHA FUTURA
+  // La tarjeta vence el ÚLTIMO día de ese mes, así que comparamos contra el mes siguiente
+  var hoy = new Date();
+  var anioActual = hoy.getFullYear();
+  var mesActual = hoy.getMonth() + 1; 
+
+  var tarjetaVencida =
+    anioTarjeta < anioActual ||
+    (anioTarjeta === anioActual && mesTarjeta < mesActual);
+
+  if (tarjetaVencida) {
+    input.style.borderColor = '#e53935';
+    span.textContent = 'La tarjeta está vencida.';
+    return false;
+  }
+
+  input.style.borderColor = '#4caf50';
+  span.textContent = '';
+  return true;
+}
+
+function activarValidacionVencimientoTarjeta() {
+  var input = document.getElementById('tarjeta-vence');
+  if (input) {
+    input.addEventListener('input', validarVencimientoTarjeta);
+    input.addEventListener('blur', validarVencimientoTarjeta);
+  }
+}
+
+  // 1. Validar FORMATO con Regex (dd/mm/yyyy)
+  var formatoRegex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/([0-9]{4})$/;
+  if (!formatoRegex.test(valor)) {
+    input.style.borderColor = '#e53935';
+    span.textContent = 'Formato inválido. Use DD/MM/AAAA (ej: 15/03/2000).';
+    return false;
+  }
+
+  var partes = valor.split('/');
+  var dia = parseInt(partes[0], 10);
+  var mes = parseInt(partes[1], 10);
+  var anio = parseInt(partes[2], 10);
+
+  // 2. Validar que sea una FECHA REAL (ej: rechazar 31/02/2000)
+  var fecha = new Date(anio, mes - 1, dia);
+  var esFechaValida =
+    fecha.getFullYear() === anio &&
+    fecha.getMonth() === mes - 1 &&
+    fecha.getDate() === dia;
+
+  if (!esFechaValida) {
+    input.style.borderColor = '#e53935';
+    span.textContent = 'Esa fecha no existe. Revisá el día y el mes.';
+    return false;
+  }
+
+  // 3. Validar MAYORÍA DE EDAD (+18 años)
+  var hoy = new Date();
+  var edad = hoy.getFullYear() - anio;
+  var noCumplioAnioTodavia =
+    hoy.getMonth() < (mes - 1) ||
+    (hoy.getMonth() === mes - 1 && hoy.getDate() < dia);
+
+  if (noCumplioAnioTodavia) edad--;
+
+  if (edad < 18) {
+    input.style.borderColor = '#e53935';
+    span.textContent = 'Debés ser mayor de 18 años para comprar entradas.';
+    return false;
+  }
+
+  // Si pasó los 3 controles:
+  input.style.borderColor = '#4caf50';
+  span.textContent = '';
+  return true;
+}
+
+function activarValidacionFechaNacimiento() {
+  var input = document.getElementById('pago-fecha-nacimiento');
+  if (input) {
+    input.addEventListener('input', validarFechaNacimiento);
+    input.addEventListener('blur', validarFechaNacimiento);
+  }
+}
+
+// Precios fijos por tipo de entrada
+var PRECIOS_ENTRADA = {
+  'general': 15000,
+  'vip': 30000,
+  'palco': 50000 
+};
+
+function calcularPrecioTotal() {
+  var tipoEntrada = document.getElementById('tipo-entrada');
+  var cantidad = document.getElementById('cantidad-entradas');
+  var mostrarPrecio = document.getElementById('precio-total-mostrado');
+
+  if (!tipoEntrada || !cantidad || !mostrarPrecio) return;
+
+  var precioUnitario = PRECIOS_ENTRADA[tipoEntrada.value] || 0;
+  var cantidadNum = parseInt(cantidad.value, 10);
+
+  // Validación: cantidad debe ser mayor a 0 y no exceder 6
+  if (isNaN(cantidadNum) || cantidadNum <= 0) {
+    mostrarPrecio.textContent = '$0';
+    return;
+  }
+  if (cantidadNum > 6) {
+    cantidadNum = 6;
+    cantidad.value = 6;
+  }
+
+  var total = precioUnitario * cantidadNum;
+
+  // Validación: el monto total debe ser mayor a cero para habilitar
+  if (total <= 0) {
+    mostrarPrecio.textContent = '$0 (seleccioná tipo y cantidad)';
+  } else {
+    mostrarPrecio.textContent = '$' + total.toLocaleString('es-AR');
+  }
+}
+
+function activarCalculoPrecio() {
+  var tipoEntrada = document.getElementById('tipo-entrada');
+  var cantidad = document.getElementById('cantidad-entradas');
+  if (tipoEntrada) tipoEntrada.addEventListener('change', calcularPrecioTotal);
+  if (cantidad) cantidad.addEventListener('input', calcularPrecioTotal);
+}
+
 // 10. Escuchar el envío del formulario y simular el éxito de la compra
 function configurarEnvioFormulario() {
   var formulario = document.getElementById("form-reserva-pago");
@@ -269,14 +460,14 @@ function configurarEnvioFormulario() {
   var inputInteresado = document.getElementById("interesado-nombre");
   var inputInteresadoDni = document.getElementById("interesado-dni");
   var inputEmail = document.getElementById("pago-email");
-  var selectTipoEntrada = document.getElementById("tipo-entrada-select");
+  var selectTipoEntrada = document.getElementById("tipo-entrada");
 
   if (!formulario || !selectEvento || !inputNombreTarjeta) return;
 
   formulario.addEventListener("submit", function(e) {
     e.preventDefault();
     
-    if (!window.validarTodosLosCamposCecilia()) {
+    if (!window.validarTodoElFormulario()) {
       alert("Por favor, complete correctamente todos los campos marcados en rojo.");
       return;
     }
@@ -297,14 +488,14 @@ function configurarEnvioFormulario() {
     if (contenedorQR) contenedorQR.innerHTML = "";
     
     // 2. EL CAMBIO CLAVE: El QR se genera con los datos del interesado real (Asistente)
-    var datosQR = `Show: ${nombreShow}\nAsistente: ${nombreAsistente}\nDNI: ${dniAsistente}\nTipo: ${tipoEntrada}`;
+    var datosQR = "ENTRADA-" + Date.now() + "-" + dniAsistente;
     
     if (typeof QRCode !== "undefined" && contenedorQR) {
       new QRCode(contenedorQR, {
         text: datosQR,
-        width: 128,
-        height: 128,
-        correctLevel: 0 
+        width: 200,
+        height: 200,
+        correctLevel: QRCode.CorrectLevel.L
       });
     }
 
@@ -318,7 +509,7 @@ function configurarEnvioFormulario() {
     if (elShow) elShow.textContent = nombreShow;
     if (elTipo) elTipo.textContent = tipoEntrada;
     
-    // Acá forzamos que use 'nombreAsistente' en lugar del propietario de la tarjeta 
+    // Aqui forzamos que use 'nombreAsistente' en lugar del propietario de la tarjeta 
     if (elDuenio) elDuenio.textContent = nombreAsistente;
 
     // 4. Mostrar el comprobante del mail
@@ -346,7 +537,9 @@ function inicializarModuloReservaPago() {
   escucharCambioEvento();
   detectarFranquiciaTarjeta();
   aplicarMascarasValidacion();
-  activarValidacionesTiempoReal(); 
+  activarValidacionesTiempoReal();
+  activarCalculoPrecio();
+  activarValidacionFechaNacimiento(); 
   configurarEnvioFormulario();
 }
 
