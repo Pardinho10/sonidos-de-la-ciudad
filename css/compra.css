@@ -2,7 +2,9 @@
    COMPRA - Estilos de la página de Compra de Entradas
    =================================================== */
 
-
+main h1 {
+  color: var(--color-primary);
+}
 .page-content {
   padding-top: 140px;
 }
@@ -28,4 +30,15 @@
 .success-message {
   color: var(--color-success);
   font-size: 0.85rem;
+}
+main.container {
+  padding-left: 4rem;
+  padding-right: 4rem;
+}
+
+@media (max-width: 768px) {
+  main.container {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
 }
