@@ -134,7 +134,12 @@ nav {
 }
 
 /* --- Responsive --- */
-@media (max-width: 768px) {
+/* Cambiamos de 768px a 1024px para que en tablets use el menú hamburguesa y el logo respire */
+@media (max-width: 1200px) {
+  .logo a {
+    white-space: nowrap; /* Por seguridad, evita que se divida en líneas */
+  }
+
   header .nav-container {
     padding: 1rem 1.25rem;
   }
@@ -156,6 +161,7 @@ nav {
     align-items: center;
     gap: 2rem;
     box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
+    z-index: 1000; /* Asegura que el menú quede por encima de todo */
   }
 
   .nav-links.active {
@@ -170,4 +176,3 @@ nav {
     margin-top: 1rem;
   }
 }
-
