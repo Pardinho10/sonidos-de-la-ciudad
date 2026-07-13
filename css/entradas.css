@@ -86,7 +86,7 @@
 
 .ticket-card {
   background-color: var(--color-surface);
-  border: 1px solid var(--color-outline-variant);
+  border: 2px solid var(--color-outline-variant);
   border-radius: var(--border-radius-lg);
   padding: var(--spacing-xl);
   text-align: center;
@@ -97,6 +97,22 @@
 .ticket-card:hover {
   transform: translateY(-8px);
   box-shadow: 0 10px 25px rgba(34, 27, 11, 0.15);
+  transition: border-color 0.3s ease;
+}
+
+/* General */
+.ticket-card:nth-child(1):hover {
+  border-color: #39ff88;
+}
+
+/* VIP */
+.ticket-card:nth-child(2):hover {
+  border-color: #c77dff;
+}
+
+/* Palco */
+.ticket-card:nth-child(3):hover {
+  border-color: #00e5ff;
 }
 
 
@@ -128,7 +144,6 @@
 
 .ticket-card.featured {
   border: 2px solid var(--color-terracotta);
-  transform: scale(1.05);
 }
 
 /* ============================================
