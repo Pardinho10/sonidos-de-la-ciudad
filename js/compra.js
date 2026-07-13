@@ -4,9 +4,9 @@
 
 // 1. Array de eventos oficiales con sus respectivas fechas y lugares fijos
 var eventosJSON = [
-  { id: "rock-2026", titulo: "Los Redonditos de Ricota (Tributo)", fecha: "Viernes 14 de Noviembre, 2026", lugar: "Estadio Madre de Ciudades - Acceso Platea: Este." },
-  { id: "edm-2026", titulo: "Varios DJs Nacionales", fecha: "Sábado 15 de Noviembre, 2026", lugar: "Estadio Madre de Ciudades - Acceso Popular: Norte." },
-  { id: "jazz-2026", titulo: "Trío de Jazz Local", fecha: "Domingo 16 de Noviembre, 2026", lugar: "Estadio Madre de Ciudades - Acceso Platea: Oeste" }
+  { id: "rock-2026", titulo: "Los Redonditos de Ricota (Tributo)", fecha: "Viernes 14 de Julio, 2026", lugar: "Estadio Madre de Ciudades - Acceso Platea: Este." },
+  { id: "edm-2026", titulo: "Varios DJs Nacionales", fecha: "Sábado 15 de Julio, 2026", lugar: "Estadio Madre de Ciudades - Acceso Popular: Norte." },
+  { id: "jazz-2026", titulo: "Trío de Jazz Local", fecha: "Domingo 16 de Julio, 2026", lugar: "Estadio Madre de Ciudades - Acceso Platea: Oeste" }
 ];
 
 // 2. Patrones de Validación por Expresiones Regulares 
