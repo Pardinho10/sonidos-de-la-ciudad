@@ -156,6 +156,7 @@ main {
 }
 
 /* --- Botones base --- */
+
 .btn {
   display: inline-block;
   padding: 0.75rem 2rem;
@@ -167,26 +168,54 @@ main {
   text-transform: uppercase;
   cursor: pointer;
   border: none;
+
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
+
+
+/* ==========================
+   BOTÓN PRINCIPAL
+   ========================== */
 
 .btn-primary {
   background-color: var(--color-terracotta);
   color: var(--color-on-primary);
 }
 
+
 .btn-primary:hover {
   background-color: var(--color-primary);
   color: var(--color-on-primary);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(226, 114, 91, 0.35);
 }
+
+/* ==========================
+   BOTÓN SECUNDARIO
+   ========================== */
 
 .btn-secondary {
   background-color: transparent;
   color: var(--color-on-background);
+
   border: 1px solid rgba(34, 27, 11, 0.2);
 }
 
+
 .btn-secondary:hover {
-  background-color: rgba(245, 230, 204, 0.2);
+
+  background-color: rgba(245, 230, 204, 0.35);
+
+  color: var(--color-on-background);
+
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 8px 20px rgba(34, 27, 11, 0.12);
 }
 
 .btn-outline-light {
