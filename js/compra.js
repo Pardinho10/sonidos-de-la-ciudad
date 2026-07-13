@@ -42,6 +42,7 @@ var patrones = {
       regex: /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/([0-9]{4})$/, 
       mensajeError: 'Formato inválido. Use DD/MM/AAAA (ej: 15/03/2000).'
   },
+
   'pago-nombre': {
     regex: /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]{3,}$/,
     mensajeError: 'Solo letras y espacios (mínimo 3 caracteres).'
@@ -94,7 +95,7 @@ function validarCampo(id) {
 }
 
 // 4. Función global para validar el formulario antes de enviar
-window.validarTodosLosCamposCecilia = function () {
+window.validarTodoElFormulario = function () {
   var todosValidos = true;
   
   Object.keys(patrones).forEach(function(id) {
@@ -113,10 +114,21 @@ window.validarTodosLosCamposCecilia = function () {
     if (!validarCampo(id)) {
       todosValidos = false;
     }
-  });
-  
-  return todosValidos;
-};
+    if (!seccionPagoVisible && (id === 'interesado-nombre' || id === 'interesado-dni' || id.startsWith('tarjeta') || id.startsWith('pago'))) {
+      return; 
+    }
+
+      if (!validarCampo(id)) {
+        todosValidos = false;
+      }
+    });
+
+    if (!validarFechaNacimiento()) {
+      todosValidos = false;
+    }
+    
+    return todosValidos
+  };
 
 // 5. Inicializar escuchadores para validación en tiempo real
 function activarValidacionesTiempoReal() {
@@ -267,6 +279,76 @@ function aplicarMascarasValidacion() {
   }
 }
 
+// Validación completa de fecha de nacimiento: formato + fecha real + mayoría de edad
+function validarFechaNacimiento() {
+  var input = document.getElementById('pago-fecha-nacimiento');
+  var span = document.getElementById('error-pago-fecha-nacimiento');
+
+  if (!input || !span) return false;
+
+  var valor = input.value.trim();
+
+  if (valor === '') {
+    input.style.borderColor = '#ccc';
+    span.textContent = '';
+    return false;
+  }
+
+  // 1. Validar FORMATO con Regex (dd/mm/yyyy)
+  var formatoRegex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/([0-9]{4})$/;
+  if (!formatoRegex.test(valor)) {
+    input.style.borderColor = '#e53935';
+    span.textContent = 'Formato inválido. Use DD/MM/AAAA (ej: 15/03/2000).';
+    return false;
+  }
+
+  var partes = valor.split('/');
+  var dia = parseInt(partes[0], 10);
+  var mes = parseInt(partes[1], 10);
+  var anio = parseInt(partes[2], 10);
+
+  // 2. Validar que sea una FECHA REAL (ej: rechazar 31/02/2000)
+  var fecha = new Date(anio, mes - 1, dia);
+  var esFechaValida =
+    fecha.getFullYear() === anio &&
+    fecha.getMonth() === mes - 1 &&
+    fecha.getDate() === dia;
+
+  if (!esFechaValida) {
+    input.style.borderColor = '#e53935';
+    span.textContent = 'Esa fecha no existe. Revisá el día y el mes.';
+    return false;
+  }
+
+  // 3. Validar MAYORÍA DE EDAD (+18 años)
+  var hoy = new Date();
+  var edad = hoy.getFullYear() - anio;
+  var noCumplioAnioTodavia =
+    hoy.getMonth() < (mes - 1) ||
+    (hoy.getMonth() === mes - 1 && hoy.getDate() < dia);
+
+  if (noCumplioAnioTodavia) edad--;
+
+  if (edad < 18) {
+    input.style.borderColor = '#e53935';
+    span.textContent = 'Debés ser mayor de 18 años para comprar entradas.';
+    return false;
+  }
+
+  // Si pasó los 3 controles:
+  input.style.borderColor = '#4caf50';
+  span.textContent = '';
+  return true;
+}
+
+function activarValidacionFechaNacimiento() {
+  var input = document.getElementById('pago-fecha-nacimiento');
+  if (input) {
+    input.addEventListener('input', validarFechaNacimiento);
+    input.addEventListener('blur', validarFechaNacimiento);
+  }
+}
+
 // Precios fijos por tipo de entrada
 var PRECIOS_ENTRADA = {
   'general': 15000,
@@ -326,7 +408,7 @@ function configurarEnvioFormulario() {
   formulario.addEventListener("submit", function(e) {
     e.preventDefault();
     
-    if (!window.validarTodosLosCamposCecilia()) {
+    if (!window.validarTodoElFormulario()) {
       alert("Por favor, complete correctamente todos los campos marcados en rojo.");
       return;
     }
@@ -347,14 +429,14 @@ function configurarEnvioFormulario() {
     if (contenedorQR) contenedorQR.innerHTML = "";
     
     // 2. EL CAMBIO CLAVE: El QR se genera con los datos del interesado real (Asistente)
-    var datosQR = `Show: ${nombreShow}\nAsistente: ${nombreAsistente}\nDNI: ${dniAsistente}\nTipo: ${tipoEntrada}`;
+    var datosQR = "ENTRADA-" + Date.now() + "-" + dniAsistente;
     
     if (typeof QRCode !== "undefined" && contenedorQR) {
       new QRCode(contenedorQR, {
         text: datosQR,
-        width: 128,
-        height: 128,
-        correctLevel: 0 
+        width: 200,
+        height: 200,
+        correctLevel: QRCode.CorrectLevel.L
       });
     }
 
@@ -397,7 +479,8 @@ function inicializarModuloReservaPago() {
   detectarFranquiciaTarjeta();
   aplicarMascarasValidacion();
   activarValidacionesTiempoReal();
-   activarCalculoPrecio(); 
+  activarCalculoPrecio();
+  activarValidacionFechaNacimiento(); 
   configurarEnvioFormulario();
 }
 
