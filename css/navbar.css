@@ -134,7 +134,12 @@ nav {
 }
 
 /* --- Responsive --- */
-@media (max-width: 768px) {
+/* Cambiamos de 768px a 1024px para que en tablets use el menú hamburguesa y el logo respire */
+@media (max-width: 1200px) {
+  .logo a {
+    white-space: nowrap; /* Por seguridad, evita que se divida en líneas */
+  }
+
   header .nav-container {
     padding: 1rem 1.25rem;
   }
@@ -143,31 +148,35 @@ nav {
     display: block;
   }
 
+  /* Estado INICIAL del menú: Totalmente oculto */
   .nav-links {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 70%;
-    max-width: 300px;
-    height: 100vh;
-    background-color: var(--color-background);
+    display: none; /* ¡CLAVE! Asegura que no se despliegue automáticamente */
+    position: absolute; 
+    top: 100%; 
+    left: 0;
+    width: 100%; 
+    max-width: none;
+    height: auto; 
+    background-color: #fff; /* Fondo claro para que combine con tu diseño */
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    gap: 2rem;
-    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
+    gap: 1.5rem;
+    padding: 2rem 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
   }
 
   .nav-links.active {
-    right: 0;
+   display: flex !important; /* Fuerza el despliegue en formato cortina */
   }
 
   .nav-links a {
     font-size: 1.1rem;
+    color: #333 !important; /* Texto oscuro legible */
   }
 
   .nav-cta {
     margin-top: 1rem;
   }
 }
-
