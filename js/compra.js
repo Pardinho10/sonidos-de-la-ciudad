@@ -1,6 +1,6 @@
 // =========================================================================
 // LÓGICA DE COMPRA DE ENTRADAS Y VALIDACIONES (UNIFICADO Y CORREGIDO)
-// =========================================================================
+// ========================================================
 
 // 1. Array de eventos oficiales con sus respectivas fechas y lugares fijos
 var eventosJSON = [
@@ -15,6 +15,12 @@ var patrones = {
       regex: /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]{3,}$/,
       mensajeError: 'Solo letras y espacios (mínimo 3 caracteres).'
   },
+
+    'cantidad-entradas': {
+      regex: /^[1-6]$/,
+      mensajeError: 'Debe ser un número entre 1 y 6.'
+    },
+
   'interesado-dni': {
       regex: /^[0-9]{7,8}$/,
       mensajeError: 'El DNI debe tener 7 u 8 dígitos.'
@@ -261,6 +267,50 @@ function aplicarMascarasValidacion() {
   }
 }
 
+// Precios fijos por tipo de entrada
+var PRECIOS_ENTRADA = {
+  'general': 15000,
+  'vip': 30000,
+  'palco': 50000  // Experiencia completa las 3 noches
+};
+
+function calcularPrecioTotal() {
+  var tipoEntrada = document.getElementById('tipo-entrada');
+  var cantidad = document.getElementById('cantidad-entradas');
+  var mostrarPrecio = document.getElementById('precio-total-mostrado');
+
+  if (!tipoEntrada || !cantidad || !mostrarPrecio) return;
+
+  var precioUnitario = PRECIOS_ENTRADA[tipoEntrada.value] || 0;
+  var cantidadNum = parseInt(cantidad.value, 10);
+
+  // Validación: cantidad debe ser mayor a 0 y no exceder 6
+  if (isNaN(cantidadNum) || cantidadNum <= 0) {
+    mostrarPrecio.textContent = '$0';
+    return;
+  }
+  if (cantidadNum > 6) {
+    cantidadNum = 6;
+    cantidad.value = 6;
+  }
+
+  var total = precioUnitario * cantidadNum;
+
+  // Validación: el monto total debe ser mayor a cero para habilitar
+  if (total <= 0) {
+    mostrarPrecio.textContent = '$0 (seleccioná tipo y cantidad)';
+  } else {
+    mostrarPrecio.textContent = '$' + total.toLocaleString('es-AR');
+  }
+}
+
+function activarCalculoPrecio() {
+  var tipoEntrada = document.getElementById('tipo-entrada');
+  var cantidad = document.getElementById('cantidad-entradas');
+  if (tipoEntrada) tipoEntrada.addEventListener('change', calcularPrecioTotal);
+  if (cantidad) cantidad.addEventListener('input', calcularPrecioTotal);
+}
+
 // 10. Escuchar el envío del formulario y simular el éxito de la compra
 function configurarEnvioFormulario() {
   var formulario = document.getElementById("form-reserva-pago");
@@ -269,7 +319,7 @@ function configurarEnvioFormulario() {
   var inputInteresado = document.getElementById("interesado-nombre");
   var inputInteresadoDni = document.getElementById("interesado-dni");
   var inputEmail = document.getElementById("pago-email");
-  var selectTipoEntrada = document.getElementById("tipo-entrada-select");
+  var selectTipoEntrada = document.getElementById("tipo-entrada");
 
   if (!formulario || !selectEvento || !inputNombreTarjeta) return;
 
@@ -346,7 +396,8 @@ function inicializarModuloReservaPago() {
   escucharCambioEvento();
   detectarFranquiciaTarjeta();
   aplicarMascarasValidacion();
-  activarValidacionesTiempoReal(); 
+  activarValidacionesTiempoReal();
+   activarCalculoPrecio(); 
   configurarEnvioFormulario();
 }
 
