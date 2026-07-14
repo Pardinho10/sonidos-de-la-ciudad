@@ -3,11 +3,8 @@
 // ========================================================
 
 // 1. Array de eventos oficiales con sus respectivas fechas y lugares fijos
-var eventosJSON = [
-  { id: "rock-2026", titulo: "Los Redonditos de Ricota (Tributo)", fecha: "Viernes 14 de Julio, 2026", lugar: "Estadio Madre de Ciudades - Acceso Platea: Este." },
-  { id: "edm-2026", titulo: "Varios DJs Nacionales", fecha: "Sábado 15 de Julio, 2026", lugar: "Estadio Madre de Ciudades - Acceso Popular: Norte." },
-  { id: "jazz-2026", titulo: "Trío de Jazz Local", fecha: "Domingo 16 de Julio, 2026", lugar: "Estadio Madre de Ciudades - Acceso Platea: Oeste" }
-];
+
+var eventosJSON = []; // Se llena con fetch al cargar la pag
 
 // 2. Patrones de Validación por Expresiones Regulares 
 var patrones = {
@@ -97,41 +94,33 @@ function validarCampo(id) {
 // 4. Función global para validar el formulario antes de enviar
 window.validarTodoElFormulario = function () {
   var todosValidos = true;
-  
-  Object.keys(patrones).forEach(function(id) {
+
+  Object.keys(patrones).forEach(function (id) {
     var input = document.getElementById(id);
     if (!input) return;
 
-    // Si el contenedor de pago no es visible todavía, ignoramos la validación visual 
     var seccionPago = document.getElementById("seccion-pago");
     var seccionPagoVisible = seccionPago && seccionPago.style.display === "block";
 
-    // Si la sección de pago no se abrió y el campo es de los nuevos o de la tarjeta, no validamos aún
     if (!seccionPagoVisible && (id === 'interesado-nombre' || id === 'interesado-dni' || id.startsWith('tarjeta') || id.startsWith('pago'))) {
-      return; 
+      return;
     }
 
     if (!validarCampo(id)) {
       todosValidos = false;
     }
-    if (!seccionPagoVisible && (id === 'interesado-nombre' || id === 'interesado-dni' || id.startsWith('tarjeta') || id.startsWith('pago'))) {
-      return; 
-    }
+  });
 
-      if (!validarCampo(id)) {
-        todosValidos = false;
-      }
-    });
+  if (!validarFechaNacimiento()) {
+    todosValidos = false;
+  }
 
-    if (!validarFechaNacimiento()) {
-      todosValidos = false;
-    }
-    if (!validarVencimientoTarjeta()) { 
-      todosValidos = false;
-    }
-    
-    return todosValidos
-  };
+  if (!validarVencimientoTarjeta()) {
+    todosValidos = false;
+  }
+
+  return todosValidos;
+};
 
 // 5. Inicializar escuchadores para validación en tiempo real
 function activarValidacionesTiempoReal() {
@@ -144,18 +133,29 @@ function activarValidacionesTiempoReal() {
   });
 }
 
-// 6. Cargar las opciones en el desplegable automáticamente al entrar
+// 6. Cargar las opciones en el desplegable, consumiendo el JSON con fetch-------------------------------
 function cargarSelectorEventos() {
   var selectEvento = document.getElementById("evento-select");
   if (!selectEvento) return;
 
-  for (var i = 0; i < eventosJSON.length; i++) {
-    var evento = eventosJSON[i];
-    var opcion = document.createElement("option");
-    opcion.value = evento.id;
-    opcion.textContent = evento.titulo;
-    selectEvento.appendChild(opcion);
-  }
+  fetch('data/events.json')
+    .then(function (response) {
+      if (!response.ok) throw new Error('No se pudo cargar events.json');
+      return response.json();
+    })
+    .then(function (datos) {
+      eventosJSON = datos; // guardamos los datos para usarlos en escucharCambioEvento
+
+      datos.forEach(function (evento) {
+        var opcion = document.createElement("option");
+        opcion.value = evento.id;
+        opcion.textContent = evento.titulo;
+        selectEvento.appendChild(opcion);
+      });
+    })
+    .catch(function (error) {
+      console.error('Error al cargar eventos:', error);
+    });
 }
 
 // 7. Manejar el cambio de show: MOSTRAR texto de aviso y ACTIVAR formulario de pago
@@ -179,6 +179,9 @@ function escucharCambioEvento() {
     }
 
     if (eventoEncontrado) {
+      var avisoDescripcion = document.getElementById("aviso-descripcion");
+      if (avisoDescripcion) avisoDescripcion.textContent = eventoEncontrado.descripcion;
+
       avisoFecha.textContent = eventoEncontrado.fecha;
       avisoLugar.textContent = eventoEncontrado.lugar;
       
@@ -452,6 +455,31 @@ function activarCalculoPrecio() {
   if (cantidad) cantidad.addEventListener('input', calcularPrecioTotal);
 }
 
+// Cargar países desde el JSON externo (fetch), pedido por la consigna
+function cargarSelectorPaises() {
+  var selectPais = document.getElementById("pago-pais");
+  if (!selectPais) return;
+
+  var url = "https://gist.githubusercontent.com/eduardolat/b2a252d17b17363fab0974bb0634d259/raw/countries.json";
+
+  fetch(url)
+    .then(function (response) {
+      if (!response.ok) throw new Error('No se pudo cargar la lista de países');
+      return response.json();
+    })
+    .then(function (paises) {
+      paises.forEach(function (pais) {
+        var opcion = document.createElement("option");
+        opcion.value = pais.iso2;
+        opcion.textContent = pais.nameES;
+        selectPais.appendChild(opcion);
+      });
+    })
+    .catch(function (error) {
+      console.error('Error al cargar países:', error);
+    });
+}
+
 // 10. Escuchar el envío del formulario y simular el éxito de la compra
 function configurarEnvioFormulario() {
   var formulario = document.getElementById("form-reserva-pago");
@@ -531,9 +559,51 @@ function configurarEnvioFormulario() {
   });
 }
 
+// Habilita/deshabilita el botón submit en tiempo real, con mensaje de estado
+
+function activarControlBotonSubmit() {
+  var boton = document.getElementById('btn-confirmar');
+  var mensajeEstado = document.getElementById('mensaje-estado-formulario');
+  var seccionPago = document.getElementById('seccion-pago');
+
+  if (!boton || !mensajeEstado) return;
+
+  function actualizarEstadoBoton() {
+    var seccionPagoVisible = seccionPago && seccionPago.style.display === "block";
+
+    if (!seccionPagoVisible) {
+      boton.disabled = true;
+      boton.style.opacity = '0.6';
+      mensajeEstado.textContent = 'Elegí un espectáculo para continuar.';
+      return;
+    }
+
+    var formularioValido = window.validarTodoElFormulario();
+
+    if (formularioValido) {
+      boton.disabled = false;
+      boton.style.opacity = '1';
+      mensajeEstado.textContent = '';
+    } else {
+      boton.disabled = true;
+      boton.style.opacity = '0.6';
+      mensajeEstado.textContent = 'Completá correctamente todos los campos para poder confirmar la compra.';
+    }
+  }
+
+  var formulario = document.getElementById('form-reserva-pago');
+  if (formulario) {
+    formulario.addEventListener('input', actualizarEstadoBoton);
+    formulario.addEventListener('change', actualizarEstadoBoton);
+  }
+
+  actualizarEstadoBoton();
+}
+
 // 11. Inicializador general del módulo
 function inicializarModuloReservaPago() {
   cargarSelectorEventos();
+  cargarSelectorPaises();
   escucharCambioEvento();
   detectarFranquiciaTarjeta();
   aplicarMascarasValidacion();
@@ -541,6 +611,7 @@ function inicializarModuloReservaPago() {
   activarCalculoPrecio();
   activarValidacionFechaNacimiento(); 
   activarValidacionVencimientoTarjeta();
+  activarControlBotonSubmit();
   configurarEnvioFormulario();
 }
 

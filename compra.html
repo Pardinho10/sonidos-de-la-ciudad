@@ -34,13 +34,9 @@
   <!-- Navbar inyectado por JS -->
   <div id="navbar-container"></div>
 
-<<<<<<< HEAD
- <main class="container page-content">
-    <h1>Compra de Entradas</h1>
-=======
+
  <main class="page-content">
     <h1 style="text-align: center;">Compra de Entradas</h1>
->>>>>>> origin/feature/sol-pagina-artistas
 
     <section class="purchase-form" style="max-width: 500px; margin: 0 auto; padding: 20px;">
       <h2 style="text-align: center;">Formulario de Compra</h2>
@@ -76,6 +72,7 @@
 
           <!-- Avisos dinámicos de Fecha y Lugar (No son inputs) -->
           <div id="info-evento-contenedor" style="display: none; background: #fff; padding: 12px; border-left: 4px solid var(--color-terracotta); border-radius: 4px; margin-top: 15px;">
+            <p style="margin: 0 0 5px 0;"><strong>🎵 Descripción:</strong> <span id="aviso-descripcion"></span></p>
             <p style="margin: 0 0 5px 0;"><strong>📅 Fecha:</strong> <span id="aviso-fecha"></span></p>
             <p style="margin: 0;"><strong>📍 Lugar:</strong> <span id="aviso-lugar"></span></p>
           </div>
@@ -83,8 +80,7 @@
 
         <!-- Campos del interesado/asistente (Agregado debajo de la info del show) -->
 <div id="datos-interesado-contenedor" style="margin-top: 15px; padding: 15px; border-top: 1px solid #eee;">
-  <h4 style="margin-top: 0; margin-bottom: 10px; color: #333;">Datos del Interesado</h4>
-  
+  <h4 style="margin-top: 0; margin-bottom: 18px; font-size: 1.15rem; color: #333;">Datos del Interesado</h4>
   <div class="form-group" style="margin-bottom: 12px;">
     <label for="interesado-nombre" style="display: block; margin-bottom: 5px; font-weight: bold;">Nombre Completo:</label>
     <input type="text" id="interesado-nombre" placeholder="Nombre de quien va a usar la entrada" required style="padding: 10px; width: 100%; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
@@ -126,16 +122,10 @@
             <span class="mensaje-error" id="error-pago-fecha-nacimiento" style="display:block; color:#e53935; font-size:0.8rem;"></span>
           </div>
 
-          <div class="form-group" style="margin-bottom: 12px;">
+          <div class="form-group" style="margin-bottom: 24px;">
             <label for="pago-pais" style="display: block; margin-bottom: 5px; font-weight: bold;">País de Residencia:</label>
             <select id="pago-pais" required style="padding: 10px; width: 100%; border: 1px solid #ccc; border-radius: 4px;">
               <option value="">-- Seleccioná tu país --</option>
-              <option value="argentina">Argentina</option>
-              <option value="chile">Chile</option>
-              <option value="uruguay">Uruguay</option>
-              <option value="paraguay">Paraguay</option>
-              <option value="bolivia">Bolivia</option>
-              <option value="brasil">Brasil</option>
             </select>
           </div>
 
@@ -179,8 +169,9 @@
           <div class="form-group" style="margin-bottom: 15px; background: #fff; padding: 12px; border-radius: 4px; border-left: 4px solid var(--color-terracotta);">
             <p style="margin: 0; font-weight: bold;">💰 Precio Total: <span id="precio-total-mostrado">$0</span></p>
           </div>
-
-          <button type="submit" id="btn-confirmar" style="padding: 12px 20px; background: var(--color-terracotta); color: white; border: none; border-radius: 4px; font-weight: 600; width: 100%; cursor: pointer;">Confirmar Reserva y Pago</button>
+          <p id="mensaje-estado-formulario" style="text-align:center; font-weight:600; color:#e53935; min-height:1.3rem; margin-bottom:8px;"></p>
+          <button type="submit" id="btn-confirmar" disabled style="padding: 12px 20px; background: var(--color-terracotta); color: white; border: none; border-radius: 4px; font-weight: 600; width: 100%; cursor: pointer; opacity: 0.6;">Confirmar Reserva y Pago</button>
+        
         </div>
 
       </form>
