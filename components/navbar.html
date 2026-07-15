@@ -1,22 +1,36 @@
 <header>
   <div class="nav-container">
     <div class="logo">
-      <a href="index.html">Sonidos de la Ciudad</a>
+      <a href="index.html">
+        <img src="assets/img/index/citysound 2.svg" alt="" class="logo-icon" aria-hidden="true">
+        <span>Sonidos de la Ciudad</span>
+      </a>
     </div>
     <nav>
-      <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false">
-        <span class="hamburger"></span>
+      <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-links">
+        <i class="fa-solid fa-bars" aria-hidden="true"></i>
       </button>
-      <ul class="nav-links">
+
+      <ul class="nav-links" id="nav-links">
+        <button class="menu-close" aria-label="Cerrar menú">
+          <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+        </button>
+
         <li><a href="index.html">Inicio</a></li>
         <li><a href="artistas.html">Artistas</a></li>
         <li><a href="cronograma.html">Cronograma</a></li>
         <li><a href="entradas.html">Entradas</a></li>
         <li><a href="ubicacion.html">Ubicación</a></li>
         <li><a href="contacto.html">Contacto</a></li>
-      </ul>
-      <a href="compra.html" class="nav-cta">Comprar Entradas</a>
 
+        <!-- Solo visible dentro del menú en tablet/móvil -->
+        <li class="nav-cta-item">
+          <a href="compra.html" class="nav-cta nav-cta--mobile">Tickets</a>
+        </li>
+      </ul>
+
+      <!-- Solo visible en el navbar de escritorio -->
+      <a href="compra.html" class="nav-cta nav-cta--desktop">Tickets</a>
     </nav>
   </div>
 </header>

@@ -25,7 +25,7 @@
   <div class="grain-overlay"></div>
   <div id="navbar-container"></div>
 
-<main class="container page-content">>
+<main class="container page-content">
     <section class="artists-section">
       
       <div class="artists-header text-center">
@@ -44,14 +44,14 @@
 
       <div class="artists-grid">
 
-        <article class="artist-card">
+        <article class="artista-card">
           <div class="artist-image-container">
             <img src="assets/img/artists/artista1.png" alt="Banda de rock tocando en vivo sobre un escenario iluminado con luces rojas.">
           </div>
           <div class="artist-body">
             <h2>Los Redonditos de Ricota (Tributo)</h2>
             <span class="badge-genre">Rock</span>
-            <p class="artist-bio body-md">Un recorrido emocionante por todos los clásicos del rock nacional que marcaron generaciones. Prepárate para vivir el pogo más grande del festival.</p>
+            <p class="artist-bio body-md">Un homenaje al fenómeno contracultural nacido en La Plata en los 70. Reviví la discografía de la mítica dupla Solari-Beilinson y preparate para el pogo más grande del mundo.</p>
             <div class="artist-audio">
               <p class="label label-sm">Escucha un adelanto:</p>
               <audio src="assets/audio/jingle1.mp3" controls></audio>
@@ -59,7 +59,7 @@
           </div>
         </article>
 
-        <article class="artist-card">
+        <article class="artista-card">
           <div class="artist-image-container">
             <img src="assets/img/artists/artista2.png" alt="DJ mezclando música electrónica en una consola con pantallas LED de fondo.">
           </div>
@@ -74,7 +74,7 @@
           </div>
         </article>
 
-        <article class="artist-card">
+        <article class="artista-card">
           <div class="artist-image-container">
             <img src="assets/img/artists/artista3.png" alt="Músicos de jazz interpretando melodías con saxofón y contrabajo bajo luz tenue.">
           </div>
@@ -88,15 +88,38 @@
             </div>
           </div>
         </article>
+      </div> 
+    </section> 
 
-      </div>
+    <!-- SECCIÓN DEL BOTÓN DE COMPRA:  -->
+    <section class="booking-section" style="max-width: 650px; margin: 4rem auto 0 auto; padding: 1.5rem 2rem; background-color: var(--color-surface, #fffdfa); border-radius: 12px; border: 1px solid var(--color-outline-variant, #ddd); text-align: center; box-sizing: border-box;">
+      <h2 style="margin-top: 0; margin-bottom: 0.5rem; font-family: 'Fraunces', serif; font-size: 1.6rem;">¡Reservá tus entradas para el Festival!</h2>
+      <p style="margin-top: 0; margin-bottom: 1.5rem; color: #555; font-size: 0.95rem;">Asegurá tu lugar de forma rápida y segura en nuestra nueva plataforma.</p>
+      
+      <a href="compra.html" 
+         style="display: inline-block; 
+                background-color: #ff6b6b; 
+                color: white; 
+                text-decoration: none; 
+                padding: 12px 32px; 
+                font-size: 1rem; 
+                font-weight: bold; 
+                border-radius: 8px; 
+                box-shadow: 0 4px 10px rgba(255, 107, 107, 0.25); 
+                transition: all 0.2s ease-in-out;
+                width: calc(100% - 40px);
+                max-width: 280px;">
+        ¡Comprar Entradas Aquí! 🎟️
+      </a>
     </section>
-  </main>
 
+  </main>
+  
   <div id="footer-container"></div>
 
   <script src="js/components/navbar.js"></script>
   <script src="js/components/footer.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/artistas.js"></script>
 </body>
 </html>

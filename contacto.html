@@ -9,7 +9,7 @@
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 
-  <!-- Google Fonts -->
+  <!-- Google Fonts: Fraunces & Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
@@ -35,15 +35,142 @@
   <div id="navbar-container"></div>
 
   <main>
-    <h1>Contacto</h1>
-    <section>
-      <h2>Envíanos tu consulta</h2>
-      <form class="contact-form">
-        <!-- Formulario de contacto aquí -->
-        <p>Formulario de contacto próximamente.</p>
-      </form>
-    </section>
-  </main>
+
+  <!-- Hero de contacto -->
+  <section class="contact-hero">
+
+    <h1>Estamos para escucharte</h1>
+
+    <p>
+      ¿Tenés dudas sobre el festival?
+      Ponete en contacto con el equipo de Sonidos de la Ciudad.
+    </p>
+
+  </section>
+
+
+  <!-- Información de contacto -->
+  <section class="contact-info">
+
+    <h2>Información de contacto</h2>
+
+    <div class="contact-cards">
+
+
+      <article class="contact-card">
+
+        <i class="fa-solid fa-location-dot"></i>
+
+        <h3>Ubicación</h3>
+
+        <p>
+          Ciudad del festival
+        </p>
+
+      </article>
+
+
+
+      <article class="contact-card">
+
+        <i class="fa-solid fa-envelope"></i>
+
+        <h3>Email</h3>
+
+        <p>
+          contacto@sonidosdelaciudad.com
+        </p>
+
+      </article>
+
+
+
+      <article class="contact-card">
+
+        <i class="fa-brands fa-instagram"></i>
+
+        <h3>Redes sociales</h3>
+
+        <p>
+          Seguinos para conocer novedades.
+        </p>
+
+      </article>
+
+
+    </div>
+
+  </section>
+
+
+
+  <!-- Formulario -->
+  <section class="contact-form-section">
+
+    <h2>Envíanos tu consulta</h2>
+
+
+    <form class="contact-form">
+
+
+      <div class="form-group">
+
+        <label for="nombre">
+          Nombre
+        </label>
+
+        <input 
+          type="text"
+          id="nombre"
+          name="nombre"
+          placeholder="Tu nombre">
+
+      </div>
+
+
+
+      <div class="form-group">
+
+        <label for="email">
+          Email
+        </label>
+
+        <input 
+          type="email"
+          id="email"
+          name="email"
+          placeholder="correo@email.com">
+
+      </div>
+
+
+
+      <div class="form-group">
+
+        <label for="mensaje">
+          Mensaje
+        </label>
+
+        <textarea
+          id="mensaje"
+          name="mensaje"
+          rows="5"
+          placeholder="Escribí tu consulta">
+        </textarea>
+
+      </div>
+
+      <button type="submit" class="btn btn-primary">
+        Enviar mensaje
+      </button>
+
+    </form>
+
+
+  </section>
+
+
+</main>
 
   <!-- Footer inyectado por JS -->
   <div id="footer-container"></div>

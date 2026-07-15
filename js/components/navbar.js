@@ -1,6 +1,6 @@
 /**
  * navbar.js - Carga el componente navbar mediante fetch
- * y gestiona el menú hamburguesa para responsive
+ * y gestiona el menú hamburguesa para tablet y móvil
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -22,26 +22,46 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /**
- * Inicializa el menú hamburguesa para dispositivos móviles
+ * Inicializa el menú hamburguesa: apertura/cierre, bloqueo de
+ * scroll, cierre con Escape y manejo de foco accesible
  */
 function initMenuToggle() {
   const menuToggle = document.querySelector('.menu-toggle');
+  const menuClose = document.querySelector('.menu-close');
   const navLinks = document.querySelector('.nav-links');
 
   if (!menuToggle || !navLinks) return;
 
-  menuToggle.addEventListener('click', () => {
-    const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
-    menuToggle.setAttribute('aria-expanded', !isExpanded);
-    navLinks.classList.toggle('active');
+  const firstLink = navLinks.querySelector('a');
+
+  function openMenu() {
+    menuToggle.setAttribute('aria-expanded', 'true');
+    navLinks.classList.add('active');
+    document.body.classList.add('nav-open');
+    // Espera a que termine el revelado circular antes de mover el foco
+    setTimeout(() => firstLink?.focus(), 350);
+  }
+
+  function closeMenu() {
+    menuToggle.setAttribute('aria-expanded', 'false');
+    navLinks.classList.remove('active');
+    document.body.classList.remove('nav-open');
+    menuToggle.focus();
+  }
+
+  menuToggle.addEventListener('click', openMenu);
+  menuClose?.addEventListener('click', closeMenu);
+
+  // Cerrar menú al hacer clic en un enlace (tablet/móvil)
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', closeMenu);
   });
 
-  // Cerrar menú al hacer clic en un enlace (móvil)
-  navLinks.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      menuToggle.setAttribute('aria-expanded', 'false');
-      navLinks.classList.remove('active');
-    });
+  // Cerrar menú con la tecla Escape
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && menuToggle.getAttribute('aria-expanded') === 'true') {
+      closeMenu();
+    }
   });
 }
 

@@ -50,6 +50,8 @@ sonidos-de-la-ciudad/
 - **CSS Global:** css/style.css (variables, reset, tipografía, utilidades)
 - **Navbar:** components/navbar.html + css/navbar.css + js/components/navbar.js
 - **Footer:** components/footer.html + css/footer.css + js/components/footer.js
+- **Cronograma:** cronograma.html + css/cronograma.css (tabla de horarios, lista numerada con animaciones, badges de género, responsive 3 breakpoints)
+- **Ubicación:** ubicacion.html + css/ubicacion.css (iframe Google Maps, grid transporte, animaciones hover/rotación, responsive 3 breakpoints)
 - **Guía equipo:** GUÍA-DEL-PROYECTO.md
 
 ## Design Reference

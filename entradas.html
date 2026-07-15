@@ -5,11 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Información sobre entradas y tipos de acceso al festival Sonidos de la Ciudad.">
   <title>Entradas - Sonidos de la Ciudad</title>
+  <meta name="keywords" content="entradas festival, Sonidos de la Ciudad, música, eventos">
 
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 
-  <!-- Google Fonts -->
+  <!-- Google Fonts: Fraunces & Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
@@ -35,12 +36,176 @@
   <div id="navbar-container"></div>
 
   <main>
-    <h1>Entradas</h1>
-    <section>
-      <h2>Tipos de Entradas</h2>
-      <p>Contenido de entradas próximamente.</p>
-    </section>
-  </main>
+
+  <!-- Hero de entradas -->
+  
+<section class="tickets-hero">
+
+    <img src="assets/img/banners/fest1.png"
+         class="hero-slide active"
+         alt="Festival Sonidos de la Ciudad">
+
+    <img src="assets/img/banners/fest2.png"
+         class="hero-slide"
+         alt="Entradas al festival">
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+
+        
+
+        <h1>Elegí tu experiencia en el festival</h1>
+
+        <p>
+            Encontrá la entrada perfecta para vivir Sonidos de la Ciudad.
+            Música, artistas locales y una experiencia única.
+        </p>
+
+        <a href="compra.html" class="btn btn-primary">
+            Comprar entradas
+        </a>
+
+    </div>
+
+</section>
+
+
+  <!-- Tipos de entradas -->
+  <section class="tickets-section">
+
+    <h2>Tipos de entradas</h2>
+
+    <div class="tickets-grid">
+
+      <article class="ticket-card">
+          <i class="fa-solid fa-ticket ticket-icon"></i>
+
+          
+          <h3>Entrada<br>General</h3>
+
+          <p class="ticket-price">$15.000</p>
+
+        <ul>
+          <li>Acceso al festival</li>
+          <li>Todos los escenarios</li>
+          <li>Zona gastronómica</li>
+        </ul>
+
+        <a href="compra.html" class="btn btn-secondary">
+          Comprar
+        </a>
+      </article>
+
+
+      <article class="ticket-card featured">
+          <i class="fa-solid fa-crown ticket-icon"></i>
+
+          
+          <h3>Entrada<br>VIP</h3>
+
+          <p class="ticket-price">$30.000</p>
+
+        <ul>
+          <li>Acceso preferencial</li>
+          <li>Zona exclusiva</li>
+          <li>Beneficios especiales</li>
+        </ul>
+
+        <a href="compra.html" class="btn btn-primary">
+          Comprar
+        </a>
+      </article>
+
+
+      <article class="ticket-card">
+          <i class="fa-solid fa-star ticket-icon"></i>
+
+          <h3>Entrada<br>Palco</h3>
+
+          <p class="ticket-price">$50.000</p>
+
+        <ul>
+          <li>Acceso total</li>
+          <li>Experiencias especiales</li>
+          <li>Recuerdos del festival</li>
+        </ul>
+
+        <a href="compra.html" class="btn btn-secondary">
+          Comprar
+        </a>
+      </article>
+
+    </div>
+
+  </section>
+
+
+  <!-- Información adicional -->
+  <section class="ticket-info">
+
+  <h2>Tu entrada incluye</h2>
+
+  <div class="benefits">
+
+      <article>
+  <i class="fa-solid fa-guitar benefit-icon"></i>
+
+  <h3>Música en vivo</h3>
+
+  <p>
+    Disfrutá artistas locales y propuestas emergentes durante toda la jornada.
+  </p>
+</article>
+
+<article>
+  <i class="fa-solid fa-ticket benefit-icon"></i>
+
+  <h3>Experiencia Festival</h3>
+
+  <p>
+    Viví una experiencia diseñada para compartir, descubrir y disfrutar cada escenario.
+  </p>
+</article>
+
+<article>
+  <i class="fa-solid fa-headphones benefit-icon"></i>
+
+  <h3>Comunidad</h3>
+
+  <p>
+    Formá parte de una comunidad que celebra la música, la cultura y el talento local.
+  </p>
+</article>
+
+  </div>
+
+</section>
+
+
+  <!-- Preguntas frecuentes -->
+  <section class="faq">
+
+    <h2>Preguntas frecuentes</h2>
+
+    <article>
+      <h3>¿Puedo comprar entradas online?</h3>
+      <p>
+        Sí, podés adquirirlas desde nuestra sección de compra.
+      </p>
+    </article>
+
+    <article>
+      <h3>¿La entrada es transferible?</h3>
+      <p>
+        Consultá las condiciones antes de realizar la compra.
+      </p>
+    </article>
+
+  </section>
+
+
+</main>
 
   <!-- Footer inyectado por JS -->
   <div id="footer-container"></div>
@@ -49,6 +214,7 @@
   <script src="js/components/navbar.js"></script>
   <script src="js/components/footer.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/entradas.js"></script>
 </body>
 </html>
-tml>
+

@@ -19,11 +19,28 @@
 /* --- Encabezado --- */
 .artists-header h1 {
     color: var(--color-primary);
+    font-size: clamp(2rem, 5vw, 3rem); 
+    position: relative;
+    display: inline-block; 
+    padding-bottom: var(--spacing-sm);
     margin-bottom: var(--spacing-sm);
+}
+
+.artists-header h1::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%); 
+    width: 60px;
+    height: 4px;
+    background-color: var(--color-terracotta);
+    border-radius: var(--border-radius);
 }
 
 .artists-header p {
     color: var(--color-text-muted);
+    font-size: clamp(0.95rem, 2.8vw, 1.1rem); 
     max-width: 600px;
     margin: 0 auto;
 }
@@ -64,8 +81,8 @@
 .artists-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: var(--spacing-xl);
-    margin-top: var(--spacing-md);
+    column-gap: var(--spacing-xl); 
+    row-gap: calc(var(--spacing-xl) + 1.5rem) !important; 
 }
 
 /* --- Tarjeta de Artista --- */
@@ -78,6 +95,7 @@
     display: flex;
     flex-direction: column;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-top: 3.5rem !important;
 }
 
 .artist-card:hover {
@@ -88,15 +106,17 @@
 /* Contenedor de Imagen */
 .artist-image-container {
     width: 100%;
-    height: 250px;
+    aspect-ratio: 16 / 10; 
     overflow: hidden;
-    background-color: var(--color-surface-container);
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+    margin-top: var(--spacing-md);
 }
 
 .artist-image-container img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block; 
     transition: transform 0.5s ease;
 }
 
@@ -156,3 +176,54 @@
     width: 100%;
     height: 40px;
 }
+
+@media (max-width: 768px) {
+    /* 1. Forzamos la grilla a tener SÍ O SÍ 2 columnas exactas */
+    .artists-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: var(--spacing-sm) !important; 
+        margin-top: var(--spacing-sm);
+    }
+
+    /* 2. Achicamos la tarjeta y sus márgenes internas para que entre todo */
+    .artist-body {
+        padding: var(--spacing-sm) !important;
+        gap: var(--spacing-xs) !important;
+    }
+
+    /* 3. Reducción drástica de textos para que no se desborden en las 2 columnas */
+    .artists-header h1 {
+        font-size: 1.6rem !important;
+    }
+
+    .artist-body h2 {
+        font-size: 0.95rem !important; 
+        line-height: 1.2;
+    }
+
+    .badge-genre {
+        font-size: 0.6rem !important;
+        padding: 2px 4px !important;
+    }
+
+    .artist-bio {
+        font-size: 0.75rem !important; 
+        line-height: 1.3;
+        margin-bottom: var(--spacing-sm) !important;
+    }
+    
+    /* 4. Compactamos el reproductor de audio */
+    .artist-audio {
+        padding-top: var(--spacing-xs) !important;
+    }
+
+    .artist-audio .label {
+        font-size: 0.65rem !important;
+    }
+
+    .artist-audio audio {
+        height: 30px !important; 
+    }
+}
+
+

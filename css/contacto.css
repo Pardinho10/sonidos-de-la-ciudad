@@ -1,8 +1,108 @@
 /* ============================================
-   CONTACTO - Estilos de la página de Contacto
+   CONTACTO - Estilos de la página
    ============================================ */
 
-/* Formulario de contacto */
+
+/* Hero */
+
+.contact-hero {
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-md);
+  text-align: center;
+  padding: 7rem var(--spacing-md) 3rem;
+}
+
+.contact-hero p {
+  max-width: 650px;
+  color: var(--color-text-muted);
+  font-size: 1.1rem;
+}
+
+
+/* Información */
+
+.contact-info {
+  padding: var(--spacing-xxl) 0;
+  text-align: center;
+}
+
+.contact-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-xl);
+  margin-top: var(--spacing-xl);
+}
+
+.contact-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-outline-variant);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-xl);
+  transition: transform .3s ease;
+}
+
+.contact-card:hover {
+  transform: translateY(-8px);
+}
+
+.contact-card i {
+  font-size: 2rem;
+  color: var(--color-terracotta);
+  margin-bottom: var(--spacing-md);
+}
+
+/* ============================================
+   FORMULARIO
+   ============================================ */
+
+.contact-form-section {
+  padding: var(--spacing-xxl) 0;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.contact-form-section h2 {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+}
+
 .contact-form {
-  /* Estilos del formulario */
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: .5rem;
+  font-weight: 600;
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 1rem;
+  border: 1px solid var(--color-outline-variant);
+  border-radius: var(--border-radius);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  background-color: var(--color-surface);
+  color: var(--color-on-background);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--color-terracotta);
+}
+
+.contact-form button {
+  align-self: center;
 }
