@@ -227,3 +227,49 @@ main {
   font-size: 1rem;
   line-height: 1.5;
 }
+
+/* --- Botón flotante volver arriba --- */
+.btn-scroll-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: var(--color-terracotta);
+  color: var(--color-on-primary);
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(226, 114, 91, 0.35);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: opacity 0.35s ease, visibility 0.35s ease, transform 0.35s ease, background-color 0.3s ease;
+  z-index: 999;
+}
+
+.btn-scroll-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.btn-scroll-top:hover {
+  background-color: var(--color-ochre);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(204, 119, 34, 0.45);
+}
+
+@media (max-width: 480px) {
+  .btn-scroll-top {
+    bottom: 1.25rem;
+    right: 1.25rem;
+    width: 42px;
+    height: 42px;
+    font-size: 1rem;
+  }
+}

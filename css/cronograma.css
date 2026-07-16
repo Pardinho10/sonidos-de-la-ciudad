@@ -173,19 +173,7 @@ tbody tr:hover td {
 }
 
 /* --- Botón volver arriba --- */
-.volver-arriba {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-top: var(--spacing-lg);
-  font-weight: 600;
-  transition: transform 0.3s ease, color 0.2s ease;
-}
-
-.volver-arriba:hover {
-  transform: translateY(-3px);
-  color: var(--color-primary);
-}
+/* Reemplazado por botón flotante global en style.css + main.js */
 
 /* --- Responsive: 3 puntos de control --- */
 /* Tablet */

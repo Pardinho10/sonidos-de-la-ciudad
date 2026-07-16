@@ -8,7 +8,10 @@
   <meta name="author" content="Sonidos de la Ciudad">
   <title>Cronograma - Sonidos de la Ciudad</title>
 
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/x-icon" href="assets/img/icons/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/img/icons/favicon-16x16.png">
+  <link rel="apple-touch-icon" href="assets/img/icons/apple-touch-icon.png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,14 +34,14 @@
 
       <div class="cronograma-header text-center">
         <h1>Cronograma del Festival</h1>
-        <p class="body-lg">No te quedes afuera de la fiesta más grande de Santiago del Estero.
-        Vivilo en el <strong>Estadio Madre de Ciudades</strong> — ¡te esperamos!.
+        <p class="body-lg">No te quedes afuera de la fiesta más grande del Norte. <br>
+        Vivilo en <strong>Santiago del Estero</strong> — ¡te esperamos!.
         </p>
       </div>
 
       <section id="horarios-por-dia">
         <h2>Horarios por Día</h2>
-        <p class="body-md">Orden de actuaciones en el <strong>Escenario Principal</strong>:</p>
+        <p class="body-md" style="margin-bottom: 1.5rem;">Orden de actuaciones en el <strong>Escenario Principal</strong>:</p>
 
         <ol class="lista-horarios">
           <li><span class="dia">Día 1 · Viernes 17/07/2026 — Rock</span> 21:00 hs — Los Redonditos de Ricota (tributo)</li>
@@ -49,60 +52,35 @@
 
       <section id="resumen-escenarios">
         <h2>¿Quién toca dónde?</h2>
-        <p class="body-md">Los tres escenarios funcionan en simultáneo dentro del mismo predio:</p>
+        <p class="body-md">Cada evento tiene su propia sede — 3 lugares distintos dentro de la ciudad:</p>
 
         <table>
-          <caption>Cronograma general por escenario - Sonidos de la Ciudad 2026</caption>
+          <caption>Cronograma general por sede - Sonidos de la Ciudad 2026</caption>
           <thead>
             <tr>
-              <th scope="col">Escenario</th>
+              <th scope="col">Lugar</th>
               <th scope="col">Artista</th>
               <th scope="col">Género</th>
               <th scope="col">Día</th>
               <th scope="col">Horario</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td>Escenario Principal</td>
-              <td>Los Redonditos de Ricota (tributo)</td>
-              <td><span class="badge badge-rock">Rock</span></td>
-              <td>Viernes 17/07</td>
-              <td>21:00 hs</td>
-            </tr>
-            <tr>
-              <td>Escenario Urbano</td>
-              <td>Varios DJs</td>
-              <td><span class="badge badge-electronica">Electrónica</span></td>
-              <td>Sábado 18/07</td>
-              <td>18:00 hs</td>
-            </tr>
-            <tr>
-              <td>Escenario Cultural</td>
-              <td>Trío de Jazz local</td>
-              <td><span class="badge badge-jazz">Jazz</span></td>
-              <td>Domingo 19/07</td>
-              <td>22:00 hs</td>
-            </tr>
+          <tbody id="tabla-escenarios">
+            <!-- Cargado dinámicamente desde data/events.json -->
           </tbody>
         </table>
 
         <p class="nota-escenarios body-md">
-          Los tres escenarios se encuentran dentro del predio del Estadio Madre de Ciudades.
+          Cada evento se realiza en una sede diferente dentro de la ciudad.
           Consultá cómo llegar en <a href="ubicacion.html">la página de Ubicación</a>.
         </p>
       </section>
-
-      <a href="#top" class="volver-arriba">
-        <i class="fa-solid fa-arrow-up" aria-hidden="true"></i> Volver arriba
-      </a>
-
-    </section>
   </main>
   <div id="footer-container"></div>
 
   <script src="js/components/navbar.js"></script>
   <script src="js/components/footer.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/cronograma.js"></script>
 </body>
 </html>

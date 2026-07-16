@@ -2,22 +2,28 @@
   {
     "id": "rock-2026",
     "titulo": "Los Redonditos de Ricota (Tributo)",
+    "genero": "Rock",
     "descripcion": "Un homenaje al fenómeno contracultural nacido en La Plata en los 70. Reviví la discografía de la mítica dupla Solari-Beilinson y preparate para el pogo más grande del mundo.",
     "fecha": "Viernes 17 de Julio, 2026",
-    "lugar": "Estadio Madre de Ciudades - Escenario Principal"
+    "lugar": "Estadio Madre de Ciudades",
+    "horario": "21:00 hs"
   },
   {
     "id": "edm-2026",
     "titulo": "Varios DJs Nacionales",
+    "genero": "Electrónica",
     "descripcion": "Una noche donde la música electrónica será la protagonista. Los DJs más aclamados del pais al mando de las bandejas. La electrónica en su máxima expresión.",
     "fecha": "Sábado 18 de Julio, 2026",
-    "lugar": "Estadio Madre de Ciudades - Escenario Urbano"
+    "lugar": "Complejo Urbano",
+    "horario": "18:00 hs"
   },
   {
     "id": "jazz-2026",
     "titulo": "Trío de Jazz Local",
+    "genero": "Jazz",
     "descripcion": "La cuota de sofisticación, talento puro e improvisación perfecta. Melodías ideales para disfrutar durante las primeras horas de la noche.",
     "fecha": "Domingo 19 de Julio, 2026",
-    "lugar": "Estadio Madre de Ciudades - Escenario Bar Cultural"
+    "lugar": "Bar Cultural 'La Ferreteria'",
+    "horario": "22:00 hs"
   }
 ]

@@ -80,9 +80,11 @@
 /* --- Grilla de Artistas (Responsiva y Horizontal) --- */
 .artists-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr;
+    align-items: stretch;
     column-gap: var(--spacing-xl); 
-    row-gap: calc(var(--spacing-xl) + 1.5rem) !important; 
+    row-gap: var(--spacing-xl);
 }
 
 /* --- Tarjeta de Artista --- */
@@ -94,8 +96,8 @@
     border: 1px solid var(--color-outline-variant);
     display: flex;
     flex-direction: column;
+    height: 100%;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    margin-top: 3.5rem !important;
 }
 
 .artist-card:hover {
@@ -116,12 +118,16 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    display: block; 
-    transition: transform 0.5s ease;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.artist-image-container:hover img {
+    transform: scale(1.12);
 }
 
 .artist-card:hover .artist-image-container img {
-    transform: scale(1.05);
+    transform: scale(1.12);
 }
 
 /* Cuerpo de la Tarjeta */
@@ -178,51 +184,121 @@
 }
 
 @media (max-width: 768px) {
-    /* 1. Forzamos la grilla a tener SÍ O SÍ 2 columnas exactas */
+    .page-content {
+        padding-top: 110px;
+    }
+
     .artists-grid {
-        grid-template-columns: repeat(2, 1fr) !important;
-        gap: var(--spacing-sm) !important; 
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: 1fr;
+        gap: var(--spacing-md);
         margin-top: var(--spacing-sm);
     }
 
-    /* 2. Achicamos la tarjeta y sus márgenes internas para que entre todo */
     .artist-body {
-        padding: var(--spacing-sm) !important;
-        gap: var(--spacing-xs) !important;
+        padding: var(--spacing-sm);
+        gap: var(--spacing-xs);
     }
 
-    /* 3. Reducción drástica de textos para que no se desborden en las 2 columnas */
     .artists-header h1 {
-        font-size: 1.6rem !important;
+        font-size: 1.6rem;
     }
 
     .artist-body h2 {
-        font-size: 0.95rem !important; 
+        font-size: 0.95rem;
         line-height: 1.2;
     }
 
     .badge-genre {
-        font-size: 0.6rem !important;
-        padding: 2px 4px !important;
+        font-size: 0.6rem;
+        padding: 2px 4px;
     }
 
     .artist-bio {
-        font-size: 0.75rem !important; 
+        font-size: 0.75rem;
         line-height: 1.3;
-        margin-bottom: var(--spacing-sm) !important;
+        margin-bottom: var(--spacing-sm);
     }
-    
-    /* 4. Compactamos el reproductor de audio */
+
     .artist-audio {
-        padding-top: var(--spacing-xs) !important;
+        padding-top: var(--spacing-xs);
     }
 
     .artist-audio .label {
-        font-size: 0.65rem !important;
+        font-size: 0.65rem;
     }
 
     .artist-audio audio {
-        height: 30px !important; 
+        height: 30px;
+    }
+}
+
+/* --- Móvil (≤480px): 1 columna, tarjetas a pantalla completa --- */
+@media (max-width: 480px) {
+    .page-content {
+        padding-top: 100px;
+        padding-left: var(--spacing-sm);
+        padding-right: var(--spacing-sm);
+    }
+
+    .artists-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+
+    .artists-header h1 {
+        font-size: 1.5rem;
+    }
+
+    .artists-header p {
+        font-size: 0.9rem;
+    }
+
+    .festival-genres {
+        padding: var(--spacing-sm);
+    }
+
+    .festival-genres ul {
+        gap: var(--spacing-sm);
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .artist-body {
+        padding: var(--spacing-md);
+        gap: var(--spacing-sm);
+    }
+
+    .artist-body h2 {
+        font-size: 1.2rem;
+    }
+
+    .artist-bio {
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+
+    .badge-genre {
+        font-size: 0.7rem;
+        padding: 4px 8px;
+    }
+
+    .artist-image-container {
+        aspect-ratio: 16 / 9;
+    }
+
+    .artist-audio audio {
+        height: 36px;
+    }
+
+    .artist-audio .label {
+        font-size: 0.75rem;
+    }
+
+    .booking-section {
+        margin-left: var(--spacing-sm);
+        margin-right: var(--spacing-sm);
+        padding: var(--spacing-md);
     }
 }
 

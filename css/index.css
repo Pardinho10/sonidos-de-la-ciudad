@@ -488,6 +488,67 @@
   }
 }
 
+/* --- Promo Video Section --- */
+.promo-video {
+  background-color: var(--color-background);
+  padding: var(--spacing-xxl) var(--spacing-md);
+}
+
+.promo-video-content {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.promo-label {
+  display: inline-block;
+  color: var(--color-terracotta);
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: var(--spacing-md);
+}
+
+.promo-title {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-weight: 700;
+  color: var(--color-charcoal);
+  margin-bottom: var(--spacing-md);
+  letter-spacing: -0.02em;
+}
+
+.promo-text {
+  color: var(--color-text-muted);
+  max-width: 600px;
+  margin: 0 auto var(--spacing-xl);
+}
+
+.promo-video-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+}
+
+.promo-video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+@media (max-width: 480px) {
+  .promo-video {
+    padding: var(--spacing-xl) var(--spacing-sm);
+  }
+}
+
 /* --- Experience Section --- */
 .experience {
   background: linear-gradient(135deg, rgba(45, 45, 45, 0.92) 0%, rgba(26, 26, 26, 0.95) 100%),

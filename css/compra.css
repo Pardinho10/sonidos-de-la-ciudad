@@ -2,52 +2,260 @@
    COMPRA - Estilos de la página de Compra de Entradas
    =================================================== */
 
-main h1 {
-  color: var(--color-primary);
-}
 .page-content {
   padding-top: 140px;
+  padding-bottom: var(--spacing-xxl);
 }
-/* Formulario de compra */
+
+main h1 {
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-lg);
+}
+
+/* --- Formulario de compra --- */
 .purchase-form {
-  /* Estilos del formulario */
+  max-width: 800px;
+  margin: 0 auto;
+  padding: var(--spacing-xl);
 }
 
-/* Validación en tiempo real */
-.input-success {
-  border-color: var(--color-success);
+.purchase-form h2 {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
 }
 
-.input-error {
-  border-color: var(--color-error);
+/* Secciones del formulario */
+.form-section {
+  background: var(--color-surface);
+  padding: var(--spacing-xl);
+  border-radius: var(--border-radius-lg);
+  margin-bottom: var(--spacing-lg);
+  border: 1px solid var(--color-outline-variant);
 }
 
-.error-message {
-  color: var(--color-error);
-  font-size: 0.85rem;
+.form-section h3 {
+  margin-top: 0;
+  color: var(--color-terracotta);
+  margin-bottom: var(--spacing-lg);
+  font-size: 1.15rem;
 }
 
-.success-message {
-  color: var(--color-success);
-  font-size: 0.85rem;
-}
-main.container {
-  padding-left: 4rem;
-  padding-right: 4rem;
+.form-section h4 {
+  margin-top: 0;
+  margin-bottom: var(--spacing-md);
+  font-size: 1.05rem;
+  color: var(--color-charcoal);
 }
 
-@media (max-width: 768px) {
-  main.container {
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
-  }
+.form-subtitle {
+  color: var(--color-terracotta);
+  margin-bottom: var(--spacing-lg);
+  font-size: 1.15rem;
 }
+
+/* Grupos de campo */
+.form-group {
+  margin-bottom: var(--spacing-md);
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--color-charcoal);
+}
+
+/* Inputs, selects y textarea */
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--color-outline-variant);
+  border-radius: var(--border-radius);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  background-color: var(--color-white);
+  color: var(--color-on-background);
+  box-sizing: border-box;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--color-terracotta);
+  box-shadow: 0 0 0 3px rgba(226, 114, 91, 0.15);
+}
+
+/* Fila de dos columnas */
+.form-row {
+  display: flex;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+}
+
+.form-row .form-group {
+  flex: 1;
+  margin-bottom: 0;
+}
+
+/* Info del evento seleccionado */
+.info-evento {
+  background: var(--color-white);
+  padding: var(--spacing-md);
+  border-left: 4px solid var(--color-terracotta);
+  border-radius: var(--border-radius);
+  margin-top: var(--spacing-md);
+  display: none;
+}
+
+.info-evento p {
+  margin: 0 0 4px 0;
+  font-size: 0.95rem;
+}
+
+/* Datos del interesado */
+.datos-interesado {
+  margin-top: var(--spacing-md);
+  padding-top: var(--spacing-md);
+  border-top: 1px solid var(--color-outline-variant);
+}
+
+/* Precio total */
+.precio-total {
+  background: var(--color-white);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--border-radius);
+  border-left: 4px solid var(--color-terracotta);
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: var(--spacing-md);
+}
+
+/* Botón confirmar */
+#btn-confirmar {
+  padding: 0.9rem 1.5rem;
+  background-color: var(--color-terracotta);
+  color: var(--color-on-primary);
+  border: none;
+  border-radius: var(--border-radius);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 1rem;
+  width: 100%;
+  cursor: pointer;
+  transition: opacity 0.3s ease, background-color 0.3s ease;
+}
+
+#btn-confirmar:not(:disabled):hover {
+  background-color: var(--color-ochre);
+}
+
 #btn-confirmar:disabled {
   cursor: not-allowed;
-  pointer-events: none;
+  opacity: 0.6;
 }
 
-#btn-confirmar:disabled:hover {
-  background-color: var(--color-terracotta) !important;
-  transform: none !important;
+/* Mensajes de error */
+.mensaje-error {
+  display: block;
+  color: var(--color-error, #e53935);
+  font-size: 0.8rem;
+  margin-top: 4px;
+}
+
+.mensaje-estado {
+  text-align: center;
+  font-weight: 600;
+  color: #e53935;
+  min-height: 1.3rem;
+  margin-bottom: var(--spacing-sm);
+}
+
+/* Logo de tarjeta */
+.tarjeta-logo {
+  font-weight: 700;
+  padding: 0.7rem 1rem;
+  background: var(--color-surface-container);
+  border-radius: var(--border-radius);
+  min-width: 90px;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+/* Comprobante email */
+.comprobante-email {
+  margin-top: var(--spacing-xl);
+  padding: var(--spacing-xl);
+  border: 2px dashed #4caf50;
+  border-radius: var(--border-radius-lg);
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  display: none;
+}
+
+.comprobante-email h3 {
+  color: #4caf50;
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.comprobante-body {
+  background: var(--color-white);
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--color-outline-variant);
+  margin: var(--spacing-md) 0;
+}
+
+.comprobante-qr {
+  text-align: center;
+  margin-top: var(--spacing-lg);
+  padding: var(--spacing-sm);
+  background: var(--color-white);
+  border: 1px solid var(--color-outline-variant);
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  .page-content {
+    padding-top: 110px;
+  }
+
+  .purchase-form {
+    padding: var(--spacing-md);
+  }
+
+  .form-section {
+    padding: var(--spacing-md);
+  }
+
+  .form-row {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+}
+
+@media (max-width: 480px) {
+  .page-content {
+    padding-top: 100px;
+  }
+
+  .purchase-form {
+    padding: var(--spacing-sm);
+  }
+
+  .form-section {
+    padding: var(--spacing-sm);
+  }
+
+  .form-group input,
+  .form-group select {
+    padding: 0.75rem;
+    font-size: 0.9rem;
+    min-height: 44px;
+  }
 }

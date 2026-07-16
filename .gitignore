@@ -24,3 +24,5 @@ Desktop.ini
 
 # Node (por si se usa algún paquete en el futuro)
 node_modules/
+
+.vercel

@@ -32,8 +32,8 @@ var patrones = {
       mensajeError: 'Ingrese un correo electrónico válido (ej: usuario@email.com).'
   },
   'pago-telefono': {
-      regex: /^[0-9]{10,15}$/,
-      mensajeError: 'Ingrese un teléfono válido (mínimo 10 dígitos, solo números).'
+      regex: /^[0-9]{10}$/,
+      mensajeError: 'Ingrese un teléfono válido (exactamente 10 dígitos, solo números).'
   },
   'pago-fecha-nacimiento': {
       regex: /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/([0-9]{4})$/, 
